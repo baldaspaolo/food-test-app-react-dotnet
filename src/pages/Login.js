@@ -38,7 +38,7 @@ function Login() {
       if (response.ok) {
         console.log("Uspješan login: ", data);
         showSuccess();
-        setUser("NoviID", "NovoKorisnickoIme");
+        setUser(data.id, data.name, true);
         navigate("/");
 
         console.log(username);

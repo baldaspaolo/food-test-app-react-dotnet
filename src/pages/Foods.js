@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import { Card } from "primereact/card";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
@@ -11,8 +12,10 @@ function Foods() {
   const [visible, setVisible] = useState(false);
   const [selectedFood, setSelectedFood] = useState([]);
   const [selectedId, setSelectedId] = useState([]);
+  const { user } = useContext(UserContext);
 
   const toast = useRef(null);
+  const isLogged = user.isLogged;
 
   const showSuccess = () => {
     toast.current.show({
@@ -144,108 +147,130 @@ function Foods() {
   };
 
   return (
-    <div className="parent">
-      <div
-        className="div1"
-        style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}
-      >
-        {food.map((item, index) => (
-          <div key={index} className="col-md-4">
+    <div>
+      {isLogged ? (
+        <div className="parent">
+          <div
+            className="div1"
+            style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}
+          >
+            {food.map((item, index) => (
+              <div key={index} className="col-md-4">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Card
+                    key={index}
+                    title={item.name}
+                    subTitle={item.price}
+                    header={header}
+                    className="md:w-25rem"
+                    style={{ margin: "2vh" }}
+                  >
+                    <p>{item.description}</p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Button
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Delete
+                      </Button>
+                      <Button
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleModify(item.id, selectedFood)}
+                      >
+                        Modify
+                      </Button>
+                    </div>
+                  </Card>
+                </div>
+              </div>
+            ))}
+          </div>
+          <Dialog
+            header="Modify menu"
+            visible={visible}
+            style={{ width: "50vw" }}
+            onHide={() => setVisible(false)}
+          >
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-                flexDirection: "row",
+                alignItems: "center",
+                alignContent: "center",
               }}
             >
-              <Card
-                key={index}
-                title={item.name}
-                subTitle={item.price}
-                header={header}
-                className="md:w-25rem"
-                style={{ margin: "2vh" }}
-              >
-                <p>{item.description}</p>
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <Button
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleDelete(item.id)}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleModify(item.id, selectedFood)}
-                  >
-                    Modify
-                  </Button>
+              <form onSubmit={handleSubmit} style={{}}>
+                <div style={{ margin: "0.5em" }}>
+                  <label htmlFor="name">Food name</label>
+                  <br />
+                  <InputText
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={selectedFood?.name || ""}
+                    onChange={handleInputChange}
+                  />
                 </div>
-              </Card>
+                <div style={{ margin: "0.5em" }}>
+                  <label htmlFor="description">Food description</label>
+                  <br />
+                  <InputTextarea
+                    id="description"
+                    name="description"
+                    rows={5}
+                    style={{ width: "27.5vh" }}
+                    value={selectedFood?.description || ""}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div style={{ margin: "0.5em" }}>
+                  <label htmlFor="price">Food price</label>
+                  <br />
+                  <InputText
+                    id="price"
+                    name="price"
+                    type="text"
+                    value={selectedFood?.price || ""}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  label="Submit"
+                  style={{
+                    marginTop: "1vh",
+                    marginLeft: "8vh",
+                    cursor: "pointer",
+                  }}
+                />
+              </form>
             </div>
-          </div>
-        ))}
-      </div>
-      <Dialog
-        header="Modify menu"
-        visible={visible}
-        style={{ width: "50vw" }}
-        onHide={() => setVisible(false)}
-      >
+          </Dialog>
+          <Toast ref={toast} />
+        </div>
+      ) : (
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            alignItems: "center",
             alignContent: "center",
+            marginTop: "40vh",
           }}
         >
-          <form onSubmit={handleSubmit} style={{}}>
-            <div style={{ margin: "0.5em" }}>
-              <label htmlFor="name">Food name</label>
-              <br />
-              <InputText
-                id="name"
-                name="name"
-                type="text"
-                value={selectedFood?.name || ""}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div style={{ margin: "0.5em" }}>
-              <label htmlFor="description">Food description</label>
-              <br />
-              <InputTextarea
-                id="description"
-                name="description"
-                rows={5}
-                style={{ width: "27.5vh" }}
-                value={selectedFood?.description || ""}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div style={{ margin: "0.5em" }}>
-              <label htmlFor="price">Food price</label>
-              <br />
-              <InputText
-                id="price"
-                name="price"
-                type="text"
-                value={selectedFood?.price || ""}
-                onChange={handleInputChange}
-              />
-            </div>
-            <Button
-              type="submit"
-              label="Submit"
-              style={{ marginTop: "1vh", marginLeft: "8vh", cursor: "pointer" }}
-            />
-          </form>
+          <h1>You do not have acces to this site! Please log in!</h1>
         </div>
-      </Dialog>
-      <Toast ref={toast} />
+      )}
     </div>
   );
 }

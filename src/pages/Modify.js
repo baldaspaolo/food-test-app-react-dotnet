@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { useRef } from "react";
 import { Toast } from "primereact/toast";
+import { UserContext } from "../context/UserContext";
 
 import "primereact/resources/primereact.min.css";
 
 function Modify() {
   const toast = useRef(null);
+
+  const { user } = useContext(UserContext);
+  const isLogged = user.isLogged;
 
   const showSuccess = () => {
     toast.current.show({
@@ -63,44 +67,61 @@ function Modify() {
 
   return (
     <div>
-      <h1>Insert new food</h1>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          alignContent: "center",
-        }}
-      >
-        <form onSubmit={handleSubmit} style={{}}>
-          <div style={{ margin: "0.5em" }}>
-            <label htmlFor="name">Food name</label>
-            <br />
-            <InputText id="name" name="name" type="text" />
+      {isLogged ? (
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              alignContent: "center",
+            }}
+          >
+            <form onSubmit={handleSubmit} style={{}}>
+              <div style={{ margin: "0.5em" }}>
+                <h1 style={{ marginTop: "15vh", marginBottom: "5vh" }}>
+                  Insert new food
+                </h1>
+                <label htmlFor="name">Food name</label>
+                <br />
+                <InputText id="name" name="name" type="text" />
+              </div>
+              <div style={{ margin: "0.5em" }}>
+                <label htmlFor="description">Food description</label>
+                <br />
+                <InputTextarea
+                  id="description"
+                  name="description"
+                  rows={5}
+                  style={{ width: "27.5vh" }}
+                />
+              </div>
+              <div style={{ margin: "0.5em" }}>
+                <label htmlFor="price">Food price</label>
+                <br />
+                <InputText id="price" name="price" type="text" />
+              </div>
+              <Button
+                type="submit"
+                label="Submit"
+                style={{ marginTop: "1vh", marginLeft: "8vh" }}
+              />
+            </form>
           </div>
-          <div style={{ margin: "0.5em" }}>
-            <label htmlFor="description">Food description</label>
-            <br />
-            <InputTextarea
-              id="description"
-              name="description"
-              rows={5}
-              style={{ width: "27.5vh" }}
-            />
-          </div>
-          <div style={{ margin: "0.5em" }}>
-            <label htmlFor="price">Food price</label>
-            <br />
-            <InputText id="price" name="price" type="text" />
-          </div>
-          <Button
-            type="submit"
-            label="Submit"
-            style={{ marginTop: "1vh", marginLeft: "8vh" }}
-          />
-        </form>
-      </div>
-      <Toast ref={toast} />
+          <Toast ref={toast} />
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            marginTop: "40vh",
+          }}
+        >
+          <h1>You do not have acces to this site! Please log in!</h1>
+        </div>
+      )}
     </div>
   );
 }
