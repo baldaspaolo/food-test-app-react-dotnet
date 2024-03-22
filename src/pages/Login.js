@@ -38,10 +38,10 @@ function Login() {
       if (response.ok) {
         console.log("Uspješan login: ", data);
         showSuccess();
-        setUser(data.id, data.name, true);
+        setUser(data.id, data.name, true, data.departmentId);
         navigate("/");
 
-        console.log(username);
+        console.log(data.departmentId);
       } else {
         console.error("Neuspješna prijava: ", data.error || data.message);
       }

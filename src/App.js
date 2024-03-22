@@ -12,11 +12,18 @@ import { useState, useEffect } from "react";
 function App() {
   const [user, setUser] = useState(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
-    return savedUser || { id: null, name: null, isLogged: false };
+    return (
+      savedUser || { id: null, name: null, isLogged: false, departmentId: null }
+    );
   });
 
-  const setUserData = (newId, newName, newLogg) => {
-    setUser({ id: newId, name: newName, isLogged: newLogg });
+  const setUserData = (newId, newName, newLogg, departmentId) => {
+    setUser({
+      id: newId,
+      name: newName,
+      isLogged: newLogg,
+      departmentId: departmentId,
+    });
   };
 
   useEffect(() => {
