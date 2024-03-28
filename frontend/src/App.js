@@ -5,9 +5,12 @@ import Home from "./pages/Home.js";
 import MyProfile from "./pages/MyProfile.js";
 import Login from "./pages/Login.js";
 import Register from "./pages/Register.js";
+import PasswordReset from "./pages/PasswordResset.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserContext } from "./context/UserContext.js";
 import { useState, useEffect } from "react";
+import ToDo from "./pages/ToDo.js";
+import ToDoCard from "./components/ToDoCard.js";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -42,6 +45,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/modify" element={<Modify />} />
+            <Route path="/resetPassword" element={<PasswordReset />} />
+            <Route path="/toDo" element={<ToDo />} />
+            <Route path="/toDos" element={<ToDoCard />} />
           </Routes>
         </UserContext.Provider>
       </Router>

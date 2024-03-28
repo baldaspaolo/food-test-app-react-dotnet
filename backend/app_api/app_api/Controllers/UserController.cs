@@ -51,6 +51,25 @@ namespace app_api.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<User>>EditUser(int id, User user)
+        {
+            var res = await _userService.EditUser(id, user);
+            if (res == null)
+                return NotFound();
+            return Ok(res);
+        }
+
+        [HttpPost("password/{id}")]
+        public async Task<ActionResult<User>> CheckUserPassword(int id, [FromBody] string password)
+        {
+            var user = await _userService.CheckUserPassword(id, password);
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
+        }
+
 
 
 

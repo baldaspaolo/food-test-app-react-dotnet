@@ -73,6 +73,10 @@ function Navbar() {
     //window.location.reload();
   };
 
+  const handleModifyToDoClick = () => {
+    navigate("/toDo");
+  };
+
   let items = [
     {
       label: "Home",
@@ -88,6 +92,11 @@ function Navbar() {
       label: "Add food",
       icon: "pi pi-plus",
       command: handleModifyFoodClick,
+    },
+    {
+      label: "To do",
+      icon: "pi pi-list",
+      command: handleModifyToDoClick,
     },
   ];
 

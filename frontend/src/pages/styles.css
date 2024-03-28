@@ -17,3 +17,22 @@
   flex-wrap: wrap;
   margin-bottom: 5vh;
 }
+
+.card:hover {
+  cursor: pointer;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(1, 3fr);
+  grid-template-rows: repeat(1, 3fr);
+  grid-column-gap: 1vh;
+  grid-row-gap: 1vh;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}

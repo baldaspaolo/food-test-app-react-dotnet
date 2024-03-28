@@ -6,6 +6,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
+import "./styles.css";
 
 function Foods() {
   const [food, setFood] = useState([]);
@@ -168,7 +169,7 @@ function Foods() {
                     title={item.name}
                     subTitle={item.price}
                     header={header}
-                    className="md:w-25rem"
+                    className="card md:w-25rem"
                     style={{ margin: "2vh" }}
                   >
                     <p>{item.description}</p>

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using app_api.Services.UserService;
 using app_api.Services.DepartmentService;
+using app_api.Services.ToDoService;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,7 +18,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IFood, FoodService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+builder.Services.AddScoped<IToDoService, ToDoService>();
 builder.Services.AddDbContext<DataContext>();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
 var app = builder.Build();
 

@@ -18,6 +18,9 @@ namespace app_api.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Department> Departments { get; set; }
 
+        public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
+
 
        
     }

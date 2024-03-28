@@ -23,6 +23,15 @@ function Login() {
     });
   };
 
+  const showWarnLogin = () => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error!",
+      detail: "Wrong login data!",
+      life: 3000,
+    });
+  };
+
   const loginUser = async (username, password) => {
     try {
       const url = new URL("https://localhost:7080/api/User");
@@ -43,6 +52,7 @@ function Login() {
 
         console.log(data.departmentId);
       } else {
+        showWarnLogin();
         console.error("Neuspješna prijava: ", data.error || data.message);
       }
     } catch (error) {
@@ -89,7 +99,6 @@ function Login() {
 
     console.log("Logging in with:", email, password);
     loginUser(email, password);
-    setUser(email);
   };
 
   return (

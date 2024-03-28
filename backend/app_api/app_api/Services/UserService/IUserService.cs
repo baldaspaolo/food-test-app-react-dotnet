@@ -8,6 +8,10 @@
 
         Task<User> RegisterUser(User user);
 
+        Task<User> EditUser(int id, User user);
+
+        Task<User> CheckUserPassword(int id, string password);
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace app_api.Services.UserService
@@ -12,6 +13,40 @@ namespace app_api.Services.UserService
         {
             _dataContext = dataContext;
         }
+
+        public async Task<User> CheckUserPassword(int id, string password)
+        {
+            var user = await _dataContext.Users.FindAsync(id);
+            if (user == null)
+                return null;
+
+            if (password == user.Password)
+            {
+                return user;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task<User> EditUser(int id, User user)
+        {
+            var users = await _dataContext.Users.FindAsync(id);
+
+            if (user == null)
+                return null;
+
+            users.Name = user.Name;
+            users.Email = user.Email;
+            users.Password = user.Password;
+          
+
+            await _dataContext.SaveChangesAsync();
+            return await _dataContext.Users.FindAsync(id);
+
+        }
+
         public async Task<User> GetUser(int userId)
         {
             var user = await _dataContext.Users
