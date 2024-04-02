@@ -123,15 +123,21 @@ function Navbar() {
       </p>
       {pic ? (
         <div>
-          <Avatar onClick={handleAvatarClick} image={pic} shape="circle" />
-          <Button
-            label="Log out"
-            severity="danger"
-            text
-            onClick={handleLogoutClick}
-          >
-            <i className="pi pi-sign-out" style={{ marginLeft: "5px" }}></i>{" "}
-          </Button>
+          {username === "" ? (
+            <div></div>
+          ) : (
+            <div>
+              <Avatar onClick={handleAvatarClick} image={pic} shape="circle" />
+              <Button
+                label="Log out"
+                severity="danger"
+                text
+                onClick={handleLogoutClick}
+              >
+                <i className="pi pi-sign-out" style={{ marginLeft: "5px" }}></i>{" "}
+              </Button>
+            </div>
+          )}
         </div>
       ) : (
         <Button label="Login" text onClick={handleLoginClick} />

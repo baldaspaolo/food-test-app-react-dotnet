@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\projekti\\food\\backend\\app_api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\todoservice\\todoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\todoservice\\todoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\todoservice\\itodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\todoservice\\itodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\foodservice\\foodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\foodservice\\foodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\models\\todo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,48 +31,8 @@
       "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\todoservice\\todoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\todoservice\\todoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\userservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\userservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\todocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\todoservice\\itodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\todoservice\\itodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\foodcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\foodservice\\foodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\foodservice\\foodservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\foodservice\\ifood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\foodservice\\ifood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\models\\food.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,6 +41,30 @@
     {
       "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\userservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\userservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\foodservice\\ifood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\foodservice\\ifood.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\departmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\departmentservice\\idepartmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -86,63 +86,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 172,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ToDoService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\ToDoService\\ToDoService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\ToDoService\\ToDoService.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\ToDoService\\ToDoService.cs",
               "RelativeToolTip": "app_api\\Services\\ToDoService\\ToDoService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAYwBMAAAAAAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAYwB4AAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-28T11:16:06.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 2,
               "Title": "IToDoService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\ToDoService\\IToDoService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\ToDoService\\IToDoService.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\ToDoService\\IToDoService.cs",
               "RelativeToolTip": "app_api\\Services\\ToDoService\\IToDoService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAkAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-28T11:15:14.834Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "Task.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\Task.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\Task.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\Task.cs",
               "RelativeToolTip": "app_api\\Models\\Task.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-28T10:18:55.846Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "ToDo.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\ToDo.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\ToDo.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\ToDo.cs",
               "RelativeToolTip": "app_api\\Models\\ToDo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-28T10:16:41.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "DepartmentsController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\DepartmentsController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\DepartmentsController.cs",
@@ -150,8 +150,7 @@
               "RelativeToolTip": "app_api\\Controllers\\DepartmentsController.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAACQAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-22T12:10:43.193Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-22T12:10:43.193Z"
             },
             {
               "$type": "Document",
@@ -163,8 +162,7 @@
               "RelativeToolTip": "app_api\\Services\\DepartmentService\\DepartmentService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-22T12:05:28.787Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-22T12:05:28.787Z"
             },
             {
               "$type": "Document",
@@ -176,12 +174,11 @@
               "RelativeToolTip": "app_api\\Services\\DepartmentService\\IDepartmentService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-22T12:04:15.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-22T12:04:15.693Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 8,
               "Title": "Food.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\Food.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\Food.cs",
@@ -194,13 +191,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 9,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\UserController.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\UserController.cs",
               "RelativeToolTip": "app_api\\Controllers\\UserController.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAQwE0AAAAAAAAA",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAQwE0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T13:06:23.37Z",
               "EditorCaption": ""
@@ -215,12 +212,11 @@
               "RelativeToolTip": "app_api\\Models\\Department.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-19T12:01:43.362Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-19T12:01:43.362Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Program.cs",
               "RelativeDocumentMoniker": "app_api\\Program.cs",
@@ -228,12 +224,11 @@
               "RelativeToolTip": "app_api\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T08:45:56.064Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-14T08:45:56.064Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "DataContext.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Data\\DataContext.cs",
               "RelativeDocumentMoniker": "app_api\\Data\\DataContext.cs",
@@ -241,44 +236,43 @@
               "RelativeToolTip": "app_api\\Data\\DataContext.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAABgAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-14T09:14:35.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-14T09:14:35.577Z"
             }
           ]
         },
         {
           "DockedWidth": 228,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "ToDoController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\ToDoController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\ToDoController.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\ToDoController.cs",
               "RelativeToolTip": "app_api\\Controllers\\ToDoController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAjAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAswCMAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-28T11:22:31.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
               "Title": "FoodService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\FoodService\\FoodService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\FoodService\\FoodService.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\FoodService\\FoodService.cs",
               "RelativeToolTip": "app_api\\Services\\FoodService\\FoodService.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAowCgAAAAAAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T09:12:57.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 11,
               "Title": "IUserService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\UserService\\IUserService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\UserService\\IUserService.cs",
@@ -291,26 +285,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\User.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\User.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\User.cs",
               "RelativeToolTip": "app_api\\Models\\User.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAA0AAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T11:28:16.457Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\UserService\\UserService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\UserService\\UserService.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\UserService\\UserService.cs",
               "RelativeToolTip": "app_api\\Services\\UserService\\UserService.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAkwDgAAAAYAAAA",
+              "ViewState": "AQIAADMAAAAAAAAAAAAswDgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-19T12:52:47.736Z",
               "EditorCaption": ""
@@ -330,13 +324,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "FoodController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\FoodController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\FoodController.cs",
               "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\FoodController.cs",
               "RelativeToolTip": "app_api\\Controllers\\FoodController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAABAAAA",
+              "ViewState": "AQIAACMAAAAAAAAAAAAwwB0AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-14T08:52:07.664Z",
               "EditorCaption": ""

@@ -23,5 +23,23 @@ namespace app_api.Controllers
                 return NotFound();
             return Ok(res);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ToDo>>AddToDo(ToDo toDo)
+        {
+            var res = await _service.AddToDo(toDo);
+            if (res == null)
+                return NotFound();
+            return Ok(res);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ToDo>> RemoveToDo(int id)
+        {
+            var res = await _service.RemoveToDo(id);
+            if (res == null)
+                return NotFound();
+            return Ok(res);
+        }
     }
 }

@@ -32,6 +32,15 @@ function Login() {
     });
   };
 
+  const showWarnLogin1 = () => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error!",
+      detail: "Error with establishing connection!",
+      life: 3000,
+    });
+  };
+
   const loginUser = async (username, password) => {
     try {
       const url = new URL("https://localhost:7080/api/User");
@@ -56,6 +65,7 @@ function Login() {
         console.error("Neuspješna prijava: ", data.error || data.message);
       }
     } catch (error) {
+      showWarnLogin1();
       console.error("Greška prilikom prijave: ", error);
     }
   };
