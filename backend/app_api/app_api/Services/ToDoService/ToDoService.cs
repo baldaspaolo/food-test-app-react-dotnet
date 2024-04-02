@@ -12,6 +12,11 @@ namespace app_api.Services.ToDoService
             _dataContext = dataContext;
         }
 
+        public Task<ToDo> AddTaskToToDo(Task task)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ToDo> AddToDo(ToDo toDo)
         {
             _dataContext.ToDos.Add(toDo);

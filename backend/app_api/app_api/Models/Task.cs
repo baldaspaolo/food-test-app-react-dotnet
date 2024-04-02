@@ -8,7 +8,7 @@
         public bool Completed { get; set; }
 
         public int ToDoId { get; set; }
-        public ToDo ToDo { get; set; }
+        public ToDo? ToDo { get; set; }
 
 
     }

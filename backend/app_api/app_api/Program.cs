@@ -7,6 +7,7 @@ using Microsoft.Data.SqlClient;
 using app_api.Services.UserService;
 using app_api.Services.DepartmentService;
 using app_api.Services.ToDoService;
+using app_api.Services.TaskService;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +20,7 @@ builder.Services.AddScoped<IFood, FoodService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IToDoService, ToDoService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
