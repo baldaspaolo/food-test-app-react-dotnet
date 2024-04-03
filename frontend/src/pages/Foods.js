@@ -47,6 +47,7 @@ function Foods() {
       }
     };
     fetchFood();
+    console.log("Is logged: " + isLogged + "Username: " + user.name);
   }, []);
 
   const editFood = async (values) => {

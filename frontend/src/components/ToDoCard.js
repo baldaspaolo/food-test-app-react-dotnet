@@ -9,8 +9,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import "../pages/styles.css";
 
 function ToDoCard({ toDos }) {
-  const [inputs, setInputs] = useState(Array(toDos.length).fill(""));
-  const [popupState, setPopupState] = useState(false);
+  const [inputs, setInputs] = useState(toDos.map(() => ""));
   const toast = useRef(null);
 
   const success = () => {
@@ -18,6 +17,15 @@ function ToDoCard({ toDos }) {
       severity: "info",
       summary: "Confirmed",
       detail: "You have delete ToDo",
+      life: 3000,
+    });
+  };
+
+  const successComplete = () => {
+    toast.current.show({
+      severity: "info",
+      summary: "Confirmed",
+      detail: "You have market task as completed!",
       life: 3000,
     });
   };
@@ -52,6 +60,55 @@ function ToDoCard({ toDos }) {
         success();
         setTimeout(() => {
           window.location.reload(true);
+        }, 100);
+      } else {
+        console.error("Error deleting: ", data.error || data.message);
+      }
+    } catch (error) {
+      console.error("erorr:", error);
+    }
+  };
+
+  const deleteTask = async (id) => {
+    try {
+      const response = await fetch(`https://localhost:7080/api/Task/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        success();
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000);
+      } else {
+        console.error("Error deleting: ", data.error || data.message);
+      }
+    } catch (error) {
+      console.error("erorr:", error);
+    }
+  };
+
+  const completeTask = async (id) => {
+    console.log(id);
+    try {
+      const response = await fetch(`https://localhost:7080/api/Task/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        successComplete();
+        setTimeout(() => {
+          window.location.reload(true);
         }, 1000);
       } else {
         console.error("Error deleting: ", data.error || data.message);
@@ -67,8 +124,48 @@ function ToDoCard({ toDos }) {
     setInputs(newInputs);
   };
 
+  const handleClickAddTask = (index, itemId) => {
+    addToDoTask(index, itemId);
+  };
+
+  const addToDoTask = async (index, itemId) => {
+    //var currentDate = new Date().toISOString();
+    try {
+      const response = await fetch("https://localhost:7080/api/Task", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: inputs[index], toDoId: itemId }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+      if (data != null) {
+        setTimeout(() => {
+          window.location.reload(true);
+        }, 1000);
+      } else {
+        console.error(
+          "Neuspješno dodavanje nove hrane: ",
+          data.error || data.message
+        );
+      }
+    } catch (error) {
+      console.error("Greška prilikom dodavanja hrane:", error);
+    }
+  };
+
   const handleDelete = (itemId) => {
     confirm2(itemId);
+  };
+
+  const handleDeleteTask = (index) => {
+    deleteTask(index);
+  };
+
+  const handleCompleteTask = (index) => {
+    completeTask(index);
   };
 
   return (
@@ -112,13 +209,14 @@ function ToDoCard({ toDos }) {
                     <InputText
                       placeholder="Add item"
                       value={inputs[index]}
-                      onChange={(e) => handleInputChange(index, e)}
+                      onChange={(e) => handleInputChange(index, e, item.id)}
                       style={{ marginRight: "1vh" }}
                     />
                     <Button
                       icon="pi pi-check"
                       raised
                       style={{ width: "28%" }}
+                      onClick={() => handleClickAddTask(index, item.id)}
                     />
                   </div>
                 </div>
@@ -133,21 +231,25 @@ function ToDoCard({ toDos }) {
                       )}{" "}
                     </div>
                     <div className="div2">
-                      <Button
-                        severity="success"
-                        icon="pi pi-check"
-                        style={{
-                          height: "70%",
-                          marginRight: "1vh",
-                          marginTop: "3vh",
-                        }}
-                        onClick={() => console.log(toDos)}
-                      />
+                      {!task.completed ? (
+                        <Button
+                          severity="success"
+                          icon="pi pi-check"
+                          style={{
+                            height: "70%",
+                            marginRight: "1vh",
+                            marginTop: "3vh",
+                          }}
+                          onClick={() => handleCompleteTask(task.id)}
+                        />
+                      ) : (
+                        <div></div>
+                      )}
                       <Button
                         severity="danger"
                         icon="pi pi-times"
                         style={{ height: "70%", marginTop: "3vh" }}
-                        onClick={() => console.log(toDos)}
+                        onClick={() => handleDeleteTask(task.id)}
                       />
                     </div>
                     <Divider type="solid" />

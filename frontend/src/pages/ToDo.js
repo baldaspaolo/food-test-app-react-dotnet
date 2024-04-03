@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
+import { UserContext } from "../context/UserContext";
 
 import ToDoCard from "../components/ToDoCard";
 
 function ToDo() {
   const [toDos, setToDos] = useState([]);
   const [input, setInput] = useState("");
+  const { user } = useContext(UserContext);
 
   const handleInputChange = (e) => {
     e.preventDefault();
-    setInput(e.target.value);
-    console.log(input);
+    if (e.target.value.length < 1) {
+      console.log("Prazno polje!");
+    } else {
+      setInput(e.target.value);
+      console.log(input);
+    }
   };
 
   const addToDo = async () => {
@@ -22,7 +28,11 @@ function ToDo() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: input, date: currentDate }),
+        body: JSON.stringify({
+          name: input,
+          date: currentDate,
+          userId: user.id,
+        }),
       });
 
       const data = await response.json();
@@ -47,8 +57,10 @@ function ToDo() {
       try {
         const response = await fetch("https://localhost:7080/api/ToDo");
         const data = await response.json();
-        console.log(data);
-        setToDos(data);
+        // Filter the todos based on the userId
+        const filteredToDos = data.filter((todo) => todo.userId === user.id);
+        console.log(filteredToDos);
+        setToDos(filteredToDos);
       } catch (error) {
         console.log("Error:", error);
       }
@@ -58,8 +70,14 @@ function ToDo() {
 
   return (
     <div>
-      <div style={{ marginTop: "2vh", marginLeft: "11vh" }}>
-        <i>Add new ToDo</i>
+      <div
+        style={{
+          display: "flex",
+          alignContent: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h1>My ToDos</h1>
       </div>
       <div
         style={{
