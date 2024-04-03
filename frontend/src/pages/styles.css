@@ -26,12 +26,13 @@
   display: grid;
   grid-template-columns: repeat(1, 3fr);
   grid-template-rows: repeat(1, 3fr);
-  grid-column-gap: 1vh;
+  grid-column-gap: 0;
   grid-row-gap: 1vh;
 }
 
 .div1 {
   grid-area: 1 / 1 / 2 / 2;
+  margin: 0;
 }
 .div2 {
   grid-area: 1 / 2 / 2 / 3;
