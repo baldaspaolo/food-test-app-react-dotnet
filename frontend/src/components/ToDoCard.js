@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
-import { InputText } from "primereact/inputtext";
 import "../pages/styles.css";
 
 function ToDoCard({ toDos }) {

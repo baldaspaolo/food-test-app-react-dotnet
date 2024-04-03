@@ -1,14 +1,8 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import { Button } from "primereact/button";
-import { UserContext } from "../context/UserContext";
 import { Card } from "primereact/card";
 
 const Home = () => {
-  const { user } = useContext(UserContext);
-
-  useEffect(() => {
-    console.log(user.id);
-  }, []);
   return (
     <div
       className="p-grid p-nogutter p-align-center"
