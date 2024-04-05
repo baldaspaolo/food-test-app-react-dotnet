@@ -17,6 +17,7 @@ namespace app_api.Models
         public Department? Department { get; set; }
 
         public List<ToDo>? ToDos { get; set; }
+        public List<Receipt>? Receipts { get; set; }
 
 
     }

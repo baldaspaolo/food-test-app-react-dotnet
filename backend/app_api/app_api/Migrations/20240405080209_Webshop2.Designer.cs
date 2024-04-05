@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using app_api.Data;
 
@@ -11,9 +12,11 @@ using app_api.Data;
 namespace app_api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240405080209_Webshop2")]
+    partial class Webshop2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,24 +24,6 @@ namespace app_api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ProductReceipt", b =>
-                {
-                    b.Property<int>("ProductsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReceiptsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductsId", "ReceiptsId");
-
-                    b.HasIndex("ReceiptsId");
-
-                    b.ToTable("ProductReceipt", (string)null);
-                });
 
             modelBuilder.Entity("app_api.Models.Category", b =>
                 {
@@ -142,16 +127,21 @@ namespace app_api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("TotalAmount")
-                        .HasColumnType("real");
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("UserId");
 
@@ -236,21 +226,6 @@ namespace app_api.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ProductReceipt", b =>
-                {
-                    b.HasOne("app_api.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("app_api.Models.Receipt", null)
-                        .WithMany()
-                        .HasForeignKey("ReceiptsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("app_api.Models.Product", b =>
                 {
                     b.HasOne("app_api.Models.Category", "Category")
@@ -264,6 +239,10 @@ namespace app_api.Migrations
 
             modelBuilder.Entity("app_api.Models.Receipt", b =>
                 {
+                    b.HasOne("app_api.Models.Product", null)
+                        .WithMany("Receipts")
+                        .HasForeignKey("ProductId");
+
                     b.HasOne("app_api.Models.User", "User")
                         .WithMany("Receipts")
                         .HasForeignKey("UserId")
@@ -312,6 +291,11 @@ namespace app_api.Migrations
             modelBuilder.Entity("app_api.Models.Department", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("app_api.Models.Product", b =>
+                {
+                    b.Navigation("Receipts");
                 });
 
             modelBuilder.Entity("app_api.Models.ToDo", b =>
