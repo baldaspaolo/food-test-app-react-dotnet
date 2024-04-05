@@ -11,6 +11,8 @@ import { UserContext } from "./context/UserContext.js";
 import { useState, useEffect } from "react";
 import ToDo from "./pages/ToDo.js";
 import ToDoCard from "./components/ToDoCard.js";
+import Cart from "./pages/Cart.js";
+import Shop from "./pages/Shop.js";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -48,6 +50,8 @@ function App() {
             <Route path="/resetPassword" element={<PasswordReset />} />
             <Route path="/toDo" element={<ToDo />} />
             <Route path="/toDos" element={<ToDoCard />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/buy" element={<Shop />} />
           </Routes>
         </UserContext.Provider>
       </Router>

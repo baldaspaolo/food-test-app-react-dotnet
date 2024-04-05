@@ -5,6 +5,10 @@ import { Menubar } from "primereact/menubar";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "primereact/avatar";
 import { Toast } from "primereact/toast";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { OverlayPanel } from "primereact/overlaypanel";
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 function Navbar() {
@@ -17,6 +21,40 @@ function Navbar() {
   const username = user.username;
   const isLogged = user.isLogged;
   const navigate = useNavigate();
+
+  const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const op = useRef(null);
+  const isMounted = useRef(false);
+
+  const productSelect = (e) => {
+    op.current.hide();
+    toast.current.show({
+      severity: "info",
+      summary: "Product Selected",
+      detail: e.data.name,
+      life: 3000,
+    });
+  };
+
+  useEffect(() => {
+    isMounted.current = true;
+    // Fetch product data from wherever it is stored and update the state
+    // For example:
+    // fetchProducts().then(data => setProducts(data));
+  }, []);
+
+  const formatCurrency = (value) => {
+    return value.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
+
+  const priceBody = (rowData) => {
+    return formatCurrency(rowData.price);
+  };
 
   useEffect(() => {
     const fetchAvatar = async (userId) => {
@@ -77,6 +115,23 @@ function Navbar() {
     navigate("/toDo");
   };
 
+  const handleShopDoClick = () => {
+    navigate("/buy");
+  };
+
+  const addProduct = () => {
+    const newProduct = {
+      id: "unique_id", // replace with actual unique id
+      name: "New Product",
+      description: "Description of New Product",
+      brand: "Brand Name",
+      price: 0, // replace with actual price
+      discount: 0, // replace with actual discount
+      categoryId: "category_id", // replace with actual category id
+    };
+    setProducts([...products, newProduct]);
+  };
+
   let items = [
     {
       label: "Home",
@@ -97,6 +152,11 @@ function Navbar() {
       label: "To do",
       icon: "pi pi-list",
       command: handleModifyToDoClick,
+    },
+    {
+      label: "Shop",
+      icon: "pi pi-list",
+      command: handleShopDoClick,
     },
   ];
 
@@ -127,6 +187,18 @@ function Navbar() {
             <div></div>
           ) : (
             <div>
+              <div
+                style={{
+                  display: "inline",
+                  marginRight: "2vh",
+                }}
+              >
+                <i
+                  className="pi pi-shopping-cart"
+                  style={{ fontSize: "1.7rem" }}
+                  onClick={(e) => op.current.toggle(e)}
+                ></i>
+              </div>
               <Avatar onClick={handleAvatarClick} image={pic} shape="circle" />
               <Button
                 label="Log out"
@@ -149,6 +221,41 @@ function Navbar() {
   return (
     <div>
       <Menubar key="1" model={items} end={end} />
+      <div className="card flex flex-column align-items-center gap-3">
+        <Toast ref={toast} />
+
+        <OverlayPanel ref={op} showCloseIcon closeOnEscape dismissable={false}>
+          <h2>Shopping cart</h2>
+          <i style={{ cursor: "pointer", marginBottom: "2vh" }}>
+            <u>Open my cart/Go to payment</u>
+          </i>
+          <DataTable
+            value={products}
+            selectionMode="single"
+            paginator
+            rows={5}
+            selection={selectedProduct}
+            onSelectionChange={(e) => setSelectedProduct(e.value)}
+            onRowClick={productSelect}
+            style={{ marginTop: "2vh" }}
+          >
+            <Column
+              field="name"
+              header="Name"
+              sortable
+              style={{ minWidth: "12rem" }}
+            />
+            <Column header="Image" />
+            <Column
+              field="price"
+              header="Price"
+              sortable
+              body={priceBody}
+              style={{ minWidth: "8rem" }}
+            />
+          </DataTable>
+        </OverlayPanel>
+      </div>
     </div>
   );
 }
