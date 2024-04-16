@@ -22,22 +22,41 @@ namespace app_api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ProductReceipt", b =>
+            modelBuilder.Entity("app_api.Models.Cart", b =>
                 {
-                    b.Property<int>("ProductsId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ReceiptsId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("userId")
+                        .IsUnique();
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("app_api.Models.CartProduct", b =>
+                {
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductsId", "ReceiptsId");
+                    b.HasKey("CartId", "ProductId");
 
-                    b.HasIndex("ReceiptsId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("ProductReceipt", (string)null);
+                    b.ToTable("CartProducts");
                 });
 
             modelBuilder.Entity("app_api.Models.Category", b =>
@@ -109,53 +128,29 @@ namespace app_api.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CategoryId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CategoryId1")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Discount")
+                    b.Property<decimal>("Discount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Price")
+                    b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId1");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("app_api.Models.Receipt", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("TotalAmount")
-                        .HasColumnType("real");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Receipts");
                 });
 
             modelBuilder.Entity("app_api.Models.Tasks", b =>
@@ -236,41 +231,43 @@ namespace app_api.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ProductReceipt", b =>
+            modelBuilder.Entity("app_api.Models.Cart", b =>
                 {
-                    b.HasOne("app_api.Models.Product", null)
-                        .WithMany()
-                        .HasForeignKey("ProductsId")
+                    b.HasOne("app_api.Models.User", "User")
+                        .WithOne("Cart")
+                        .HasForeignKey("app_api.Models.Cart", "userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("app_api.Models.Receipt", null)
-                        .WithMany()
-                        .HasForeignKey("ReceiptsId")
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("app_api.Models.CartProduct", b =>
+                {
+                    b.HasOne("app_api.Models.Cart", "Cart")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("app_api.Models.Product", "Product")
+                        .WithMany("CartProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("app_api.Models.Product", b =>
                 {
                     b.HasOne("app_api.Models.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("app_api.Models.Receipt", b =>
-                {
-                    b.HasOne("app_api.Models.User", "User")
-                        .WithMany("Receipts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("app_api.Models.Tasks", b =>
@@ -304,6 +301,11 @@ namespace app_api.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("app_api.Models.Cart", b =>
+                {
+                    b.Navigation("CartProducts");
+                });
+
             modelBuilder.Entity("app_api.Models.Category", b =>
                 {
                     b.Navigation("Products");
@@ -314,6 +316,11 @@ namespace app_api.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("app_api.Models.Product", b =>
+                {
+                    b.Navigation("CartProducts");
+                });
+
             modelBuilder.Entity("app_api.Models.ToDo", b =>
                 {
                     b.Navigation("Tasks");
@@ -321,7 +328,7 @@ namespace app_api.Migrations
 
             modelBuilder.Entity("app_api.Models.User", b =>
                 {
-                    b.Navigation("Receipts");
+                    b.Navigation("Cart");
 
                     b.Navigation("ToDos");
                 });

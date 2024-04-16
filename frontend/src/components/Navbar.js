@@ -14,6 +14,9 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
   const [pic, setPic] = useState(null);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [totals, setTotals] = useState({});
+  const [quantities, setQuantities] = useState({});
 
   const toast = useRef(null);
 
@@ -40,20 +43,16 @@ function Navbar() {
 
   useEffect(() => {
     isMounted.current = true;
-    // Fetch product data from wherever it is stored and update the state
-    // For example:
-    // fetchProducts().then(data => setProducts(data));
   }, []);
 
-  const formatCurrency = (value) => {
-    return value.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
-
   const priceBody = (rowData) => {
-    return formatCurrency(rowData.price);
+    if (rowData.product && typeof rowData.product.price === "number") {
+      return rowData.product.price.toLocaleString("en-US", {
+        style: "currency",
+        currency: "EUR",
+      });
+    }
+    return "N/A";
   };
 
   useEffect(() => {
@@ -82,6 +81,58 @@ function Navbar() {
       setPic(null);
     };
   }, [userId]);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(
+          `https://localhost:7080/api/Cart?id=${userId}`
+        );
+        if (!response.ok) {
+          console.log("Failed to fetch!");
+        } else {
+          const data = await response.json();
+          console.log(data);
+          fetchCartProducts(data.id);
+        }
+      } catch (error) {
+        console.log("error");
+      }
+    };
+    fetchCart();
+  }, []);
+
+  const fetchCartProducts = async (cartId) => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/CartProduct?id=${cartId}`
+      );
+      if (!response.ok) {
+        console.log("Failed to fetch products!");
+      } else {
+        const data = await response.json();
+        setCartProducts(data);
+
+        const quantitiesData = {}; // Declare quantitiesData here
+        const newTotals = {};
+        let totalPrice = 0;
+
+        data.forEach((product) => {
+          quantitiesData[product.product.id] = product.quantity;
+          newTotals[product.product.id] =
+            product.quantity * product.product.price;
+          totalPrice += newTotals[product.product.id];
+        });
+
+        setTotals(newTotals);
+        setQuantities(quantitiesData);
+
+        console.log("Total price:", totalPrice);
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
   const handleHomeClick = () => {
     navigate("/");
@@ -117,19 +168,6 @@ function Navbar() {
 
   const handleShopDoClick = () => {
     navigate("/buy");
-  };
-
-  const addProduct = () => {
-    const newProduct = {
-      id: "unique_id", // replace with actual unique id
-      name: "New Product",
-      description: "Description of New Product",
-      brand: "Brand Name",
-      price: 0, // replace with actual price
-      discount: 0, // replace with actual discount
-      categoryId: "category_id", // replace with actual category id
-    };
-    setProducts([...products, newProduct]);
   };
 
   let items = [
@@ -172,6 +210,8 @@ function Navbar() {
       life: 3000,
     });
   };
+
+  const totalPrice = Object.values(totals).reduce((acc, val) => acc + val, 0);
 
   const end = (
     <div
@@ -218,6 +258,11 @@ function Navbar() {
     </div>
   );
 
+  const handleCartNavigate = () => {
+    navigate("/cart");
+    window.location.reload(true);
+  };
+
   return (
     <div>
       <Menubar key="1" model={items} end={end} />
@@ -226,11 +271,14 @@ function Navbar() {
 
         <OverlayPanel ref={op} showCloseIcon closeOnEscape dismissable={false}>
           <h2>Shopping cart</h2>
-          <i style={{ cursor: "pointer", marginBottom: "2vh" }}>
+          <i
+            style={{ cursor: "pointer", marginBottom: "2vh" }}
+            onClick={handleCartNavigate}
+          >
             <u>Open my cart/Go to payment</u>
           </i>
           <DataTable
-            value={products}
+            value={cartProducts}
             selectionMode="single"
             paginator
             rows={5}
@@ -240,20 +288,32 @@ function Navbar() {
             style={{ marginTop: "2vh" }}
           >
             <Column
-              field="name"
+              field="product.name"
               header="Name"
               sortable
               style={{ minWidth: "12rem" }}
             />
-            <Column header="Image" />
+
             <Column
-              field="price"
+              field="product.price"
               header="Price"
               sortable
               body={priceBody}
               style={{ minWidth: "8rem" }}
             />
+            <Column
+              field="quantity"
+              header="Quantity"
+              sortable
+              style={{ minWidth: "8rem" }}
+            />
           </DataTable>
+          <div style={{ float: "right" }}>
+            <p>
+              <b>Total price: </b>
+              {totalPrice} €
+            </p>
+          </div>
         </OverlayPanel>
       </div>
     </div>

@@ -1,111 +1,195 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { UserContext } from "../context/UserContext";
 import { Button } from "primereact/button";
-import { DataView } from "primereact/dataview";
-import { Rating } from "primereact/rating";
-import { Tag } from "primereact/tag";
-import { classNames } from "primereact/utils";
+import { Toast } from "primereact/toast";
+import { InputNumber } from "primereact/inputnumber";
+
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
 
 export default function Cart() {
   const [products, setProducts] = useState([]);
-
-  // Define your product data directly here
-  const initialProducts = [
-    {
-      id: "1000",
-      name: "Bamboo Watch",
-      description: "Product Description",
-      image: "bamboo-watch.jpg",
-      price: 65,
-      category: "Accessories",
-      quantity: 24,
-      inventoryStatus: "INSTOCK",
-      rating: 5,
-    },
-    // Add more products as needed
-  ];
+  const [quantities, setQuantities] = useState({});
+  const [totals, setTotals] = useState({});
+  const [totalPrice, setTotalsPrice] = useState(null);
+  const { user } = useContext(UserContext);
+  const toast = useRef(null);
+  const userId = user.id;
 
   useEffect(() => {
-    // Set the initial products when the component mounts
-    setProducts(initialProducts);
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(
+          `https://localhost:7080/api/Cart?id=${userId}`
+        );
+        if (!response.ok) {
+          console.log("Failed to fetch!");
+        } else {
+          const data = await response.json();
+          fetchCartProducts(data.id);
+        }
+      } catch (error) {
+        console.log("error");
+      }
+    };
+    fetchCart();
   }, []);
 
-  const getSeverity = (product) => {
-    switch (product.inventoryStatus) {
-      case "INSTOCK":
-        return "success";
+  const fetchCartProducts = async (cartId) => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/CartProduct?id=${cartId}`
+      );
+      if (!response.ok) {
+        console.log("Failed to fetch products!");
+      } else {
+        const data = await response.json();
+        const quantitiesData = {};
 
-      case "LOWSTOCK":
-        return "warning";
+        data.forEach((product) => {
+          quantitiesData[product.product.id] = product.quantity;
+          totals[product.product.id] = product.quantity * product.product.price;
+        });
+        setQuantities(quantitiesData);
+        setTotals(totals);
+        setProducts(data);
 
-      case "OUTOFSTOCK":
-        return "danger";
-
-      default:
-        return null;
+        let totalPrice = 0;
+        Object.entries(totals).forEach(([productId, total]) => {
+          totalPrice += total;
+        });
+        setTotalsPrice(totalPrice);
+      }
+    } catch (error) {
+      console.log("error s");
+      console.log(error);
     }
   };
 
-  const itemTemplate = (product, index) => {
+  const updateQuantity = async (cartId, productId, quantitiy) => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/CartProduct?cartId=${cartId}&productId=${productId}&quantity=${quantitiy}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        fetchCartProducts(cartId);
+      }
+    } catch (error) {
+      console.log("Error");
+    }
+  };
+
+  const deleteProductCart = async (cartId, productId) => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/CartProduct?cartId=${cartId}&productId=${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        showSuccess();
+        fetchCartProducts(cartId);
+      }
+    } catch (error) {
+      console.log("Error");
+    }
+  };
+
+  const handleChangeQuantity = (cartId, productId, value, price) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: value,
+    }));
+    updateQuantity(cartId, productId, value);
+    const totalPrice = value * price;
+
+    setTotals((prevState) => ({
+      ...prevState,
+      [productId]: totalPrice,
+    }));
+  };
+
+  const removeButton = (rowData) => {
+    return <Button icon="pi pi-trash" onClick={() => handleRemove(rowData)} />;
+  };
+
+  const handleRemove = (rowData) => {
+    deleteProductCart(rowData.cartId, rowData.product.id);
+  };
+
+  const showSuccess = () => {
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Product removed from Cart!",
+      life: 3000,
+    });
+  };
+
+  const inputNumber = (rowData) => {
+    const productId = rowData.product.id;
     return (
-      <div className="col-12" key={product.id}>
-        <div
-          className={classNames(
-            "flex flex-column xl:flex-row xl:align-items-start p-4 gap-4",
-            { "border-top-1 surface-border": index !== 0 }
-          )}
-        >
-          <img
-            className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round"
-            src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
-            alt={product.name}
-          />
-          <div className="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
-            <div className="flex flex-column align-items-center sm:align-items-start gap-3">
-              <div className="text-2xl font-bold text-900">{product.name}</div>
-              <Rating value={product.rating} readOnly cancel={false}></Rating>
-              <div className="flex align-items-center gap-3">
-                <span className="flex align-items-center gap-2">
-                  <i className="pi pi-tag"></i>
-                  <span className="font-semibold">{product.category}</span>
-                </span>
-                <Tag
-                  value={product.inventoryStatus}
-                  severity={getSeverity(product)}
-                ></Tag>
-              </div>
-            </div>
-            <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
-              <span className="text-2xl font-semibold">${product.price}</span>
-              <Button
-                icon="pi pi-shopping-cart"
-                className="p-button-rounded"
-                disabled={product.inventoryStatus === "OUTOFSTOCK"}
-              ></Button>
-            </div>
-          </div>
-        </div>
+      <div style={{ width: "15vh" }}>
+        <InputNumber
+          value={quantities[productId] || 0}
+          onValueChange={(e) =>
+            handleChangeQuantity(
+              rowData.cartId,
+              rowData.product.id,
+              e.value,
+              rowData.product.price
+            )
+          }
+          showButtons
+          min={1}
+        />
       </div>
     );
   };
 
-  const listTemplate = (items) => {
-    if (!items || items.length === 0) return null;
-
-    let list = items.map((product, index) => {
-      return itemTemplate(product, index);
-    });
-
-    return <div className="grid grid-nogutter">{list}</div>;
-  };
-
   return (
-    <div className="card">
-      <DataView
-        value={products}
-        listTemplate={listTemplate}
-        paginator
-        rows={5}
-      />
+    <div className="card" style={{ margin: "5vh" }}>
+      <h1>My Cart</h1>
+      <DataTable value={products} tableStyle={{ minWidth: "50rem" }}>
+        <Column field="product.id" header="Code"></Column>
+
+        <Column field="product.name" header="Name"></Column>
+        <Column field="product.category.name" header="Category"></Column>
+        <Column field="product.price" header="Price"></Column>
+        <Column
+          header="Total"
+          body={(rowData) => totals[rowData.product.id] || 0}
+        ></Column>
+        <Column field="quantity" header="Quantity" body={inputNumber}></Column>
+        <Column header="Remove" body={removeButton}></Column>
+      </DataTable>
+      <Toast ref={toast} />
+      <div style={{ float: "right", marginRight: "17vh", marginTop: "5vh" }}>
+        <p>
+          <b>Base price: </b>
+          {totalPrice - (totalPrice * 25) / 100} €
+        </p>
+        <p>
+          <b>TAX 25%: </b>
+          {(totalPrice * 25) / 100} €
+        </p>
+
+        <p>
+          <b>Total price: </b>
+          {totalPrice} €
+        </p>
+        <Button severity="danger">Pay</Button>
+      </div>
     </div>
   );
 }

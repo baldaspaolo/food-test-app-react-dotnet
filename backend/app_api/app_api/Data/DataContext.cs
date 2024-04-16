@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using app_api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace app_api.Data
 {
@@ -16,19 +17,8 @@ namespace app_api.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>()
-                .HasMany(p => p.Receipts)
-                .WithMany(r => r.Products)
-                .UsingEntity(j => j.ToTable("ProductReceipt"));
-
-             modelBuilder.Entity<Product>()
-            .HasMany(p => p.Receipts)
-            .WithMany(r => r.Products)
-            .UsingEntity(j =>
-            {
-                j.ToTable("ProductReceipt");
-                j.Property<int>("Quantity").IsRequired(); // Add the Quantity column
-             });
+            modelBuilder.Entity<CartProduct>()
+               .HasKey(cp => new { cp.CartId, cp.ProductId });
 
 
         }
@@ -38,13 +28,22 @@ namespace app_api.Data
 
         public DbSet<ToDo> ToDos { get; set; }
         public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Cart> Carts { get; set; }
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Receipt> Receipts { get; set; }
-       
-        
+        public DbSet<CartProduct> CartProducts { get; set; }
+
+
+
+
+
+
+
+
+
 
 
 

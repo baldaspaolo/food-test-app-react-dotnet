@@ -13,6 +13,7 @@ import ToDo from "./pages/ToDo.js";
 import ToDoCard from "./components/ToDoCard.js";
 import Cart from "./pages/Cart.js";
 import Shop from "./pages/Shop.js";
+import Product from "./pages/Product.js";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -42,7 +43,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route path="/all" element={<Foods />} />
+            <Route path="/all/" element={<Foods />} />
             <Route path="/myProfile" element={<MyProfile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -52,6 +53,7 @@ function App() {
             <Route path="/toDos" element={<ToDoCard />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/buy" element={<Shop />} />
+            <Route path="/product/:id" element={<Product />} />
           </Routes>
         </UserContext.Provider>
       </Router>

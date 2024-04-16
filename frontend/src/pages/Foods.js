@@ -13,6 +13,7 @@ function Foods() {
   const [visible, setVisible] = useState(false);
   const [selectedFood, setSelectedFood] = useState([]);
   const [selectedId, setSelectedId] = useState([]);
+
   const { user } = useContext(UserContext);
 
   const toast = useRef(null);
