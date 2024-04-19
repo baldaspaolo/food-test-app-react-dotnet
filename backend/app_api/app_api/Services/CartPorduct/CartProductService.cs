@@ -53,6 +53,19 @@ namespace app_api.Services.CartPorduct
 
         }
 
+        public async Task<string> DeleteCartProducts(int cartId)
+        {
+            var cartProducts = await _dbContext.CartProducts
+                               .Where(ci => ci.CartId == cartId)
+                               .ToListAsync();
+
+            _dbContext.CartProducts.RemoveRange(cartProducts);
+            await _dbContext.SaveChangesAsync();
+
+            return "Cart products successfully deleted.";
+
+        }
+
         public async Task<CartProduct> DeleteProductCard(int cartId, int productId)
         {
             var cartProduct = await _dbContext.CartProducts.FirstOrDefaultAsync(cp => cp.CartId == cartId && cp.ProductId == productId);

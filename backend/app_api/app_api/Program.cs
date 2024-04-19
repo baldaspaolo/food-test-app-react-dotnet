@@ -11,6 +11,8 @@ using app_api.Services.TaskService;
 using app_api.Services.CartService;
 using app_api.Services.CartPorduct;
 using app_api.Services.ProductService;
+using app_api.Services.ReceiptService;
+using app_api.Services.RecipeProductService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,11 @@ builder.Services.AddScoped<IToDoService, ToDoService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<ICartService, CartService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IReceiptService, ReceiptService>();
+builder.Services.AddScoped<IRecipeProductService, ReceiptProductService>();
+
+
+
 
 builder.Services.AddScoped<ICartProductService, CartProductService>();
 

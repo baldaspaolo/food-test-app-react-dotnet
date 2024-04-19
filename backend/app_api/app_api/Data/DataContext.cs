@@ -20,6 +20,9 @@ namespace app_api.Data
             modelBuilder.Entity<CartProduct>()
                .HasKey(cp => new { cp.CartId, cp.ProductId });
 
+            modelBuilder.Entity<ReceiptProduct>()
+               .HasKey(cp => new { cp.ReceiptId, cp.ProductId });
+
 
         }
         public DbSet<Food> Foods { get; set; }
@@ -35,6 +38,12 @@ namespace app_api.Data
         public DbSet<Product> Products { get; set; }
 
         public DbSet<CartProduct> CartProducts { get; set; }
+
+        public DbSet<Receipt> Receipts { get; set; }
+
+        public DbSet<ReceiptProduct> ReceiptProducts { get; set; }
+
+
 
 
 

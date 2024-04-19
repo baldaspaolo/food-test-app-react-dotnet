@@ -14,6 +14,7 @@ import ToDoCard from "./components/ToDoCard.js";
 import Cart from "./pages/Cart.js";
 import Shop from "./pages/Shop.js";
 import Product from "./pages/Product.js";
+import MyOrders from "./pages/MyOrders.js";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -54,6 +55,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/buy" element={<Shop />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/myOrders" element={<MyOrders />} />
           </Routes>
         </UserContext.Provider>
       </Router>

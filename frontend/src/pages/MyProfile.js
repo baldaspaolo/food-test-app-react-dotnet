@@ -1,32 +1,15 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { UserContext } from "../context/UserContext";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
-import { Toast } from "primereact/toast";
 
 import { Dialog } from "primereact/dialog";
 
 function MyProfile() {
-  const toast = useRef(null);
-
-  const showWarn = () => {
-    toast.current.show({
-      severity: "warn",
-      summary: "Warning",
-      detail: "Password is not correct!",
-      life: 3000,
-    });
-  };
-
-  const showSuccess = () => {
-    toast.current.show({
-      severity: "success",
-      summary: "Success",
-      detail: "User successfully edited!",
-      life: 3000,
-    });
-  };
+  const navigate = useNavigate();
 
   const { user } = useContext(UserContext);
   /*const [newUser, setNewUser] = useState({
@@ -87,6 +70,7 @@ function MyProfile() {
       const data = await response.json();
       if (await response.ok) {
         console.log("Zaporka je točno!");
+        console.log(data);
         editUser();
       } else {
         console.error("Zaporka nije točna: ");
@@ -126,6 +110,10 @@ function MyProfile() {
 
   const handleCheckPassword = () => {
     checkPassword(userId);
+  };
+
+  const handleClickMyOrders = () => {
+    navigate("/myOrders");
   };
 
   useEffect(() => {
@@ -168,7 +156,25 @@ function MyProfile() {
             >
               {visible ? (
                 <div className="p-col-12">
-                  <h1>My Profile</h1>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <h1>My Profile</h1>
+                    <Button severity="info" onClick={handleClickMyOrders}>
+                      <i
+                        className="pi pi-list"
+                        style={{ fontSize: "1rem" }}
+                      ></i>
+                      <b style={{ marginLeft: "1vh", marginRight: "1vh" }}>
+                        My Orders
+                      </b>
+                    </Button>
+                  </div>
+
                   <Card title="User Information" style={{ width: "100%" }}>
                     <div className="p-grid">
                       <div className="p-col-12">

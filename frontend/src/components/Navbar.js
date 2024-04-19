@@ -25,7 +25,6 @@ function Navbar() {
   const isLogged = user.isLogged;
   const navigate = useNavigate();
 
-  const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const op = useRef(null);

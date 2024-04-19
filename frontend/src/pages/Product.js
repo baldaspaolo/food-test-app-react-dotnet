@@ -6,7 +6,6 @@ import { Button } from "primereact/button";
 import { InputNumber } from "primereact/inputnumber";
 import { UserContext } from "../context/UserContext";
 import { Toast } from "primereact/toast";
-import { fetchCartProducts } from "../components/Navbar.js";
 
 function Product() {
   const [value1, setValue1] = useState(1);

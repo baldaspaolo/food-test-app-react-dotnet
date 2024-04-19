@@ -12,6 +12,7 @@ export default function Cart() {
   const [quantities, setQuantities] = useState({});
   const [totals, setTotals] = useState({});
   const [totalPrice, setTotalsPrice] = useState(null);
+  const [cartId, setCartId] = useState(null);
   const { user } = useContext(UserContext);
   const toast = useRef(null);
   const userId = user.id;
@@ -26,7 +27,9 @@ export default function Cart() {
           console.log("Failed to fetch!");
         } else {
           const data = await response.json();
+
           fetchCartProducts(data.id);
+          setCartId(data.id);
         }
       } catch (error) {
         console.log("error");
@@ -156,6 +159,71 @@ export default function Cart() {
       </div>
     );
   };
+  //https://localhost:7080/api/ReceiptProduct?receiptId=5&productId=13&quantity=5
+  //https://localhost:7080/api/CartProduct/delete?cartId=3
+
+  const deleteCartProducts = async () => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/CartProduct/delete?cartId=${cartId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      console.log("Successful edit: ", data.message);
+
+      setTimeout(() => {
+        window.location.reload(true);
+      }, 1000);
+    } catch (error) {
+      console.error("Greška prilikom dodavanja hrane:", error);
+    }
+  };
+
+  const handlePay = async () => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/Receipt?userId=${userId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      await Promise.all(
+        products.map(async (item) => {
+          try {
+            const resp = await fetch(
+              `https://localhost:7080/api/ReceiptProduct?receiptId=${data.id}&productId=${item.productId}&quantity=${item.quantity}`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            deleteCartProducts();
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="card" style={{ margin: "5vh" }}>
@@ -174,22 +242,28 @@ export default function Cart() {
         <Column header="Remove" body={removeButton}></Column>
       </DataTable>
       <Toast ref={toast} />
-      <div style={{ float: "right", marginRight: "17vh", marginTop: "5vh" }}>
-        <p>
-          <b>Base price: </b>
-          {totalPrice - (totalPrice * 25) / 100} €
-        </p>
-        <p>
-          <b>TAX 25%: </b>
-          {(totalPrice * 25) / 100} €
-        </p>
+      {totalPrice !== 0 ? (
+        <div style={{ float: "right", marginRight: "17vh", marginTop: "5vh" }}>
+          <p>
+            <b>Base price: </b>
+            {totalPrice - (totalPrice * 25) / 100} €
+          </p>
+          <p>
+            <b>TAX 25%: </b>
+            {(totalPrice * 25) / 100} €
+          </p>
 
-        <p>
-          <b>Total price: </b>
-          {totalPrice} €
-        </p>
-        <Button severity="danger">Pay</Button>
-      </div>
+          <p>
+            <b>Total price: </b>
+            {totalPrice} €
+          </p>
+          <Button severity="danger" onClick={handlePay}>
+            Pay
+          </Button>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

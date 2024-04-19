@@ -10,6 +10,8 @@
 
         Task<CartProduct> AdjustQuantityProduct(int cartId, int productId, int quantity);
 
+        Task<string> DeleteCartProducts(int cartId);
+
 
 
     }

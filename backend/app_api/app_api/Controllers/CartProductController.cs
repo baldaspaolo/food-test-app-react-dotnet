@@ -53,6 +53,16 @@ namespace app_api.Controllers
                 return NotFound();
             return Ok(res);
         }
+
+        [HttpDelete("delete")]
+        public async Task<string> DeleteCartProducts(int cartId)
+        {
+            var res = await _cartProductService.DeleteCartProducts(cartId);
+
+            if (res == null)
+                return ("Fail");
+            return ("Ok");
+        }
     }
 }
 
