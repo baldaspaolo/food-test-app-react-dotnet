@@ -5,11 +5,18 @@ import { Menubar } from "primereact/menubar";
 import { useNavigate } from "react-router-dom";
 import { Avatar } from "primereact/avatar";
 import { Toast } from "primereact/toast";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
+import { OverlayPanel } from "primereact/overlaypanel";
+
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 
 function Navbar() {
   const { user, setUser } = useContext(UserContext);
   const [pic, setPic] = useState(null);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [totals, setTotals] = useState({});
+  const [quantities, setQuantities] = useState({});
 
   const toast = useRef(null);
 
@@ -17,6 +24,35 @@ function Navbar() {
   const username = user.username;
   const isLogged = user.isLogged;
   const navigate = useNavigate();
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const op = useRef(null);
+  const isMounted = useRef(false);
+
+  const productSelect = (e) => {
+    op.current.hide();
+    toast.current.show({
+      severity: "info",
+      summary: "Product Selected",
+      detail: e.data.name,
+      life: 3000,
+    });
+  };
+
+  useEffect(() => {
+    isMounted.current = true;
+  }, []);
+
+  const priceBody = (rowData) => {
+    if (rowData.product && typeof rowData.product.price === "number") {
+      return rowData.product.price.toLocaleString("en-US", {
+        style: "currency",
+        currency: "EUR",
+      });
+    }
+    return "N/A";
+  };
 
   useEffect(() => {
     const fetchAvatar = async (userId) => {
@@ -44,6 +80,58 @@ function Navbar() {
       setPic(null);
     };
   }, [userId]);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const response = await fetch(
+          `https://localhost:7080/api/Cart?id=${userId}`
+        );
+        if (!response.ok) {
+          console.log("Failed to fetch!");
+        } else {
+          const data = await response.json();
+          console.log(data);
+          fetchCartProducts(data.id);
+        }
+      } catch (error) {
+        console.log("error");
+      }
+    };
+    fetchCart();
+  }, []);
+
+  const fetchCartProducts = async (cartId) => {
+    try {
+      const response = await fetch(
+        `https://localhost:7080/api/CartProduct?id=${cartId}`
+      );
+      if (!response.ok) {
+        console.log("Failed to fetch products!");
+      } else {
+        const data = await response.json();
+        setCartProducts(data);
+
+        const quantitiesData = {}; // Declare quantitiesData here
+        const newTotals = {};
+        let totalPrice = 0;
+
+        data.forEach((product) => {
+          quantitiesData[product.product.id] = product.quantity;
+          newTotals[product.product.id] =
+            product.quantity * product.product.price;
+          totalPrice += newTotals[product.product.id];
+        });
+
+        setTotals(newTotals);
+        setQuantities(quantitiesData);
+
+        console.log("Total price:", totalPrice);
+      }
+    } catch (error) {
+      console.log("error");
+    }
+  };
 
   const handleHomeClick = () => {
     navigate("/");
@@ -77,6 +165,10 @@ function Navbar() {
     navigate("/toDo");
   };
 
+  const handleShopDoClick = () => {
+    navigate("/buy");
+  };
+
   let items = [
     {
       label: "Home",
@@ -98,6 +190,11 @@ function Navbar() {
       icon: "pi pi-list",
       command: handleModifyToDoClick,
     },
+    {
+      label: "Shop",
+      icon: "pi pi-list",
+      command: handleShopDoClick,
+    },
   ];
 
   if (!isLogged) {
@@ -113,6 +210,8 @@ function Navbar() {
     });
   };
 
+  const totalPrice = Object.values(totals).reduce((acc, val) => acc + val, 0);
+
   const end = (
     <div
       className="flex align-items-center gap-2"
@@ -127,6 +226,18 @@ function Navbar() {
             <div></div>
           ) : (
             <div>
+              <div
+                style={{
+                  display: "inline",
+                  marginRight: "2vh",
+                }}
+              >
+                <i
+                  className="pi pi-shopping-cart"
+                  style={{ fontSize: "1.7rem" }}
+                  onClick={(e) => op.current.toggle(e)}
+                ></i>
+              </div>
               <Avatar onClick={handleAvatarClick} image={pic} shape="circle" />
               <Button
                 label="Log out"
@@ -146,9 +257,64 @@ function Navbar() {
     </div>
   );
 
+  const handleCartNavigate = () => {
+    navigate("/cart");
+    window.location.reload(true);
+  };
+
   return (
     <div>
       <Menubar key="1" model={items} end={end} />
+      <div className="card flex flex-column align-items-center gap-3">
+        <Toast ref={toast} />
+
+        <OverlayPanel ref={op} showCloseIcon closeOnEscape dismissable={false}>
+          <h2>Shopping cart</h2>
+          <i
+            style={{ cursor: "pointer", marginBottom: "2vh" }}
+            onClick={handleCartNavigate}
+          >
+            <u>Open my cart/Go to payment</u>
+          </i>
+          <DataTable
+            value={cartProducts}
+            selectionMode="single"
+            paginator
+            rows={5}
+            selection={selectedProduct}
+            onSelectionChange={(e) => setSelectedProduct(e.value)}
+            onRowClick={productSelect}
+            style={{ marginTop: "2vh" }}
+          >
+            <Column
+              field="product.name"
+              header="Name"
+              sortable
+              style={{ minWidth: "12rem" }}
+            />
+
+            <Column
+              field="product.price"
+              header="Price"
+              sortable
+              body={priceBody}
+              style={{ minWidth: "8rem" }}
+            />
+            <Column
+              field="quantity"
+              header="Quantity"
+              sortable
+              style={{ minWidth: "8rem" }}
+            />
+          </DataTable>
+          <div style={{ float: "right" }}>
+            <p>
+              <b>Total price: </b>
+              {totalPrice} €
+            </p>
+          </div>
+        </OverlayPanel>
+      </div>
     </div>
   );
 }

@@ -18,6 +18,9 @@ namespace app_api.Models
 
         public List<ToDo>? ToDos { get; set; }
 
+        public Cart? Cart { get; set; }
+
+
 
     }
 }

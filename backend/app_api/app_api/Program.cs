@@ -8,6 +8,12 @@ using app_api.Services.UserService;
 using app_api.Services.DepartmentService;
 using app_api.Services.ToDoService;
 using app_api.Services.TaskService;
+using app_api.Services.CartService;
+using app_api.Services.CartPorduct;
+using app_api.Services.ProductService;
+using app_api.Services.ReceiptService;
+using app_api.Services.RecipeProductService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -21,6 +27,16 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IDepartmentService, DepartmentService>();
 builder.Services.AddScoped<IToDoService, ToDoService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IReceiptService, ReceiptService>();
+builder.Services.AddScoped<IRecipeProductService, ReceiptProductService>();
+
+
+
+
+builder.Services.AddScoped<ICartProductService, CartProductService>();
+
 builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
