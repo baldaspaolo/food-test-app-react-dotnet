@@ -15,21 +15,49 @@ import Cart from "./pages/Cart.js";
 import Shop from "./pages/Shop.js";
 import Product from "./pages/Product.js";
 import MyOrders from "./pages/MyOrders.js";
+import Paying from "./pages/Paying.js";
 
 function App() {
   const [user, setUser] = useState(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
     return (
-      savedUser || { id: null, name: null, isLogged: false, departmentId: null }
+      savedUser || {
+        id: null,
+        name: null,
+        isLogged: false,
+        departmentId: null,
+        address: null,
+        country: null,
+        phone: null,
+        region: null,
+        surname: null,
+      }
     );
   });
 
-  const setUserData = (newId, newName, newLogg, departmentId) => {
+  const setUserData = (
+    newId,
+    newName,
+    newLogg,
+    departmentId,
+    newAddress,
+    newCity,
+    newCountry,
+    newPhone,
+    newRegion,
+    newSurname
+  ) => {
     setUser({
       id: newId,
       name: newName,
       isLogged: newLogg,
       departmentId: departmentId,
+      address: newAddress,
+      city: newCity,
+      country: newCountry,
+      phone: newPhone,
+      region: newRegion,
+      surname: newSurname,
     });
   };
 
@@ -55,6 +83,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/buy" element={<Shop />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/pay" element={<Paying />} />
             <Route path="/myOrders" element={<MyOrders />} />
           </Routes>
         </UserContext.Provider>

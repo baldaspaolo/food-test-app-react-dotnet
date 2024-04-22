@@ -56,7 +56,18 @@ function Login() {
       if (response.ok) {
         console.log("Uspješan login: ", data);
         showSuccess();
-        setUser(data.id, data.name, true, data.departmentId);
+        setUser(
+          data.id,
+          data.name,
+          true,
+          data.departmentId,
+          data.address,
+          data.city,
+          data.country,
+          data.phone,
+          data.region,
+          data.surname
+        );
         navigate("/");
 
         console.log(data.departmentId);
