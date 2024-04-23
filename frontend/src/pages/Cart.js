@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { UserContext } from "../context/UserContext";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
@@ -16,6 +18,8 @@ export default function Cart() {
   const { user } = useContext(UserContext);
   const toast = useRef(null);
   const userId = user.id;
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -190,7 +194,7 @@ export default function Cart() {
   const handlePay = async () => {
     try {
       const response = await fetch(
-        `https://localhost:7080/api/Receipt?userId=${userId}`,
+        `https://localhost:7080/api/Receipt?userId=${userId}&total=${totalPrice}`,
         {
           method: "POST",
           headers: {
@@ -225,6 +229,10 @@ export default function Cart() {
     }
   };
 
+  const goToPay = () => {
+    navigate("/pay");
+  };
+
   return (
     <div className="card" style={{ margin: "5vh" }}>
       <h1>My Cart</h1>
@@ -257,7 +265,7 @@ export default function Cart() {
             <b>Total price: </b>
             {totalPrice} €
           </p>
-          <Button severity="danger" onClick={handlePay}>
+          <Button severity="danger" onClick={goToPay}>
             Pay
           </Button>
         </div>

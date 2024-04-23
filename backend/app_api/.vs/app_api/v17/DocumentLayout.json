@@ -7,6 +7,18 @@
       "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\receiptservice\\receiptservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\migrations\\20240422112328_addinguserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\migrations\\20240422112328_addinguserinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\cartproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\cartproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -83,10 +95,6 @@
       "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\models\\receiptproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\services\\userservice\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|c:\\projekti\\food\\backend\\app_api\\app_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5CDA832-C631-4A0F-BDA6-08EECF5920E7}|app_api\\app_api.csproj|solutionrelative:app_api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -102,7 +110,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "ReceiptProductController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\ReceiptProductController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\ReceiptProductController.cs",
@@ -110,12 +118,11 @@
               "RelativeToolTip": "app_api\\Controllers\\ReceiptProductController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T08:37:03.24Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-19T08:37:03.24Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "ReceiptController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\ReceiptController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\ReceiptController.cs",
@@ -123,12 +130,11 @@
               "RelativeToolTip": "app_api\\Controllers\\ReceiptController.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAMwBYAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T08:10:55.833Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T08:10:55.833Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Program.cs",
               "RelativeDocumentMoniker": "app_api\\Program.cs",
@@ -136,12 +142,11 @@
               "RelativeToolTip": "app_api\\Program.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAAACAAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T08:08:27.654Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T08:08:27.654Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "ProductService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\ProductService\\ProductService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\ProductService\\ProductService.cs",
@@ -166,7 +171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "IReceiptService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\ReceiptService\\IReceiptService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\ReceiptService\\IReceiptService.cs",
@@ -178,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "DataContext.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Data\\DataContext.cs",
               "RelativeDocumentMoniker": "app_api\\Data\\DataContext.cs",
@@ -190,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "ReceiptProduct.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\ReceiptProduct.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\ReceiptProduct.cs",
@@ -202,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Receipt.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\Receipt.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\Receipt.cs",
@@ -214,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\UserController.cs",
@@ -233,6 +238,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "20240422112328_addingUserInfo.cs",
+              "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Migrations\\20240422112328_addingUserInfo.cs",
+              "RelativeDocumentMoniker": "app_api\\Migrations\\20240422112328_addingUserInfo.cs",
+              "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Migrations\\20240422112328_addingUserInfo.cs",
+              "RelativeToolTip": "app_api\\Migrations\\20240422112328_addingUserInfo.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T11:23:31.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\User.cs",
+              "RelativeDocumentMoniker": "app_api\\Models\\User.cs",
+              "ToolTip": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\User.cs",
+              "RelativeToolTip": "app_api\\Models\\User.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAmwBYAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-22T11:20:59.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CartProductController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\CartProductController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\CartProductController.cs",
@@ -240,12 +270,11 @@
               "RelativeToolTip": "app_api\\Controllers\\CartProductController.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAAIwDgAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T10:31:01.742Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-19T10:31:01.742Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "CartProductService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\CartPorduct\\CartProductService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\CartPorduct\\CartProductService.cs",
@@ -253,12 +282,11 @@
               "RelativeToolTip": "app_api\\Services\\CartPorduct\\CartProductService.cs",
               "ViewState": "AQIAACwAAAAAAAAAAAAYwDcAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T10:22:29.962Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-19T10:22:29.962Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "ReceiptProductService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\RecipeProductService\\ReceiptProductService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\RecipeProductService\\ReceiptProductService.cs",
@@ -266,12 +294,11 @@
               "RelativeToolTip": "app_api\\Services\\RecipeProductService\\ReceiptProductService.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAQwAsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T08:07:29.04Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-19T08:07:29.04Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "IRecipeProductService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\RecipeProductService\\IRecipeProductService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\RecipeProductService\\IRecipeProductService.cs",
@@ -279,12 +306,11 @@
               "RelativeToolTip": "app_api\\Services\\RecipeProductService\\IRecipeProductService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T08:07:25.632Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-19T08:07:25.632Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "FoodService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\FoodService\\FoodService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\FoodService\\FoodService.cs",
@@ -292,12 +318,11 @@
               "RelativeToolTip": "app_api\\Services\\FoodService\\FoodService.cs",
               "ViewState": "AQIAACMAAAAAAAAAAAAIwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-16T13:06:18.303Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T13:06:18.303Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "CartService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\CartService\\CartService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\CartService\\CartService.cs",
@@ -309,7 +334,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "ICartService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\CartService\\ICartService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\CartService\\ICartService.cs",
@@ -321,7 +346,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ICartProductService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\CartPorduct\\ICartProductService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\CartPorduct\\ICartProductService.cs",
@@ -329,12 +354,11 @@
               "RelativeToolTip": "app_api\\Services\\CartPorduct\\ICartProductService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-16T12:55:22.269Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T12:55:22.269Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "CartProduct.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Models\\CartProduct.cs",
               "RelativeDocumentMoniker": "app_api\\Models\\CartProduct.cs",
@@ -346,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 3,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\UserService\\UserService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\UserService\\UserService.cs",
@@ -358,7 +382,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "FoodController.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Controllers\\FoodController.cs",
               "RelativeDocumentMoniker": "app_api\\Controllers\\FoodController.cs",
@@ -366,12 +390,11 @@
               "RelativeToolTip": "app_api\\Controllers\\FoodController.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAgwBMAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-05T12:47:17.952Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-05T12:47:17.952Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "TaskService.cs",
               "DocumentMoniker": "C:\\projekti\\food\\backend\\app_api\\app_api\\Services\\TaskService\\TaskService.cs",
               "RelativeDocumentMoniker": "app_api\\Services\\TaskService\\TaskService.cs",
