@@ -166,7 +166,7 @@ export default function Cart() {
   //https://localhost:7080/api/ReceiptProduct?receiptId=5&productId=13&quantity=5
   //https://localhost:7080/api/CartProduct/delete?cartId=3
 
-  const deleteCartProducts = async () => {
+  /*const deleteCartProducts = async () => {
     try {
       const response = await fetch(
         `https://localhost:7080/api/CartProduct/delete?cartId=${cartId}`,
@@ -189,9 +189,9 @@ export default function Cart() {
     } catch (error) {
       console.error("Greška prilikom dodavanja hrane:", error);
     }
-  };
+  };*/
 
-  const handlePay = async () => {
+  /*const handlePay = async () => {
     try {
       const response = await fetch(
         `https://localhost:7080/api/Receipt?userId=${userId}&total=${totalPrice}`,
@@ -227,7 +227,7 @@ export default function Cart() {
     } catch (error) {
       console.log(error);
     }
-  };
+  };*/
 
   const goToPay = () => {
     navigate("/pay");

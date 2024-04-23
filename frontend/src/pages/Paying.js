@@ -8,12 +8,16 @@ import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Dialog } from "primereact/dialog";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { InputNumber } from "primereact/inputnumber";
 
 function Paying() {
   const [visible, setVisible] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [spinner, setSpinner] = useState(false);
   const [spinner2, setSpinner2] = useState(false);
+  const [visibleCart, setVisibleCart] = useState(false);
 
   const [paymentSuccess, setPaymentSuccess] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -196,19 +200,19 @@ function Paying() {
       } else {
         const data = await response.json();
         const quantitiesData = {};
-        let totalPrice = 0; // Initialize totalPrice here
+        let totalPrice = 0;
 
         data.forEach((product) => {
           quantitiesData[product.product.id] = product.quantity;
           const total = product.quantity * product.product.price;
           totals[product.product.id] = total;
-          totalPrice += total; // Add the total of each product to totalPrice
+          totalPrice += total;
         });
 
         setQuantities(quantitiesData);
         setTotals(totals);
         setProducts(data);
-        setTotalsPrice(totalPrice); // Set totalPrice state after calculating it
+        setTotalsPrice(totalPrice);
       }
     } catch (error) {
       console.log("error s");
@@ -278,298 +282,374 @@ function Paying() {
       console.log(error);
     }
   };
+
   ////////
+
+  const openReceipt = () => {
+    setVisibleCart(true);
+  };
 
   return (
     <div>
-      {/*<Button onClick={() => setVisible(true)}>Show Dialog</Button>*/}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "5vh",
-          marginRight: "10vh",
-        }}
-      >
-        <div style={{ marginRight: "10vh" }}>
-          <h2 style={{ marginLeft: "17vh" }}>Invoice</h2>
-          <p>Payment amount</p>
-          <p>$500.00</p>
+      {totalPrice < 1 ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "cenetr",
+          }}
+        >
+          <h1>Somethings wrong...</h1>
         </div>
-      </div>
-      <div className="flex justify-content-center">
-        <div style={{ display: "flex", marginTop: "1vh", marginBottom: "3vh" }}>
-          <div className="flex align-items-center gap-2">
-            <label htmlFor="payOnDelivery">Pay on Delivery</label>
-            <InputSwitch
-              id="payOnDelivery"
-              checked={payOnDelivery}
-              onChange={(e) => setPayOnDelivery(e.value)}
-              style={{ marginRight: "5vh" }}
-            />
-          </div>
-          <div className="flex align-items-center gap-2">
-            <label htmlFor="useSavedAddress">Use my saved address</label>
-            <InputSwitch
-              id="useSavedAddress"
-              checked={useSavedAddress}
-              onChange={(e) => setUseSavedAddress(e.value)}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="card flex justify-content-center">
-        <div className="flex flex-column gap-2">
-          {!payOnDelivery && (
-            <>
-              <label htmlFor="name">Name on Card</label>
-              <InputText
-                id="name"
-                aria-describedby="name-help"
-                value={cardData.name}
-                onChange={(e) =>
-                  setCardData({ ...cardData, name: e.target.value })
-                }
-              />
-
-              <label htmlFor="cardNumber">Card number</label>
-              <InputText
-                id="cardNumber"
-                aria-describedby="cardNumber-help"
-                value={cardData.number}
-                onChange={(e) =>
-                  setCardData({ ...cardData, number: e.target.value })
-                }
-              />
-
-              <div className="flex align-items-center gap-2">
-                <div className="flex flex-column">
-                  <label htmlFor="expiryDate">Expiry date</label>
-                  <InputText
-                    id="expiryDate"
-                    aria-describedby="expiryDate-help"
-                    value={cardData.expiry}
-                    onChange={(e) =>
-                      setCardData({ ...cardData, expiry: e.target.value })
-                    }
+      ) : (
+        <div>
+          <div>
+            {/*<Button onClick={() => setVisible(true)}>Show Dialog</Button>*/}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: "5vh",
+                marginRight: "10vh",
+              }}
+            >
+              <div style={{ marginRight: "6vh" }}>
+                <h2 style={{ marginLeft: "18vh" }}>PAYMENT</h2>
+                <div>
+                  <p>
+                    <b>Payment amount</b>
+                  </p>
+                  <p>{totalPrice}€</p>
+                  <p onClick={openReceipt} style={{}}>
+                    <u>See order</u>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex justify-content-center">
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "1vh",
+                  marginBottom: "3vh",
+                }}
+              >
+                <div className="flex align-items-center gap-2">
+                  <label htmlFor="payOnDelivery">Pay on Delivery</label>
+                  <InputSwitch
+                    id="payOnDelivery"
+                    checked={payOnDelivery}
+                    onChange={(e) => setPayOnDelivery(e.value)}
+                    style={{ marginRight: "5vh" }}
                   />
                 </div>
-                <div className="flex flex-column">
-                  <label htmlFor="cvv">CVV</label>
-                  <InputText
-                    id="cvv"
-                    aria-describedby="cvv-help"
-                    value={cardData.cvv}
-                    onChange={(e) =>
-                      setCardData({ ...cardData, cvv: e.target.value })
-                    }
+                <div className="flex align-items-center gap-2">
+                  <label htmlFor="useSavedAddress">Use my saved address</label>
+                  <InputSwitch
+                    id="useSavedAddress"
+                    checked={useSavedAddress}
+                    onChange={(e) => setUseSavedAddress(e.value)}
                   />
                 </div>
               </div>
-            </>
-          )}
+            </div>
+            <div className="card flex justify-content-center">
+              <div className="flex flex-column gap-2">
+                {!payOnDelivery && (
+                  <>
+                    <label htmlFor="name">Name on Card</label>
+                    <InputText
+                      id="name"
+                      aria-describedby="name-help"
+                      value={cardData.name}
+                      onChange={(e) =>
+                        setCardData({ ...cardData, name: e.target.value })
+                      }
+                    />
 
-          <Button
-            label={payOnDelivery ? "Order and pay on delivery" : "Pay"}
-            icon="pi pi-check"
-            onClick={handlePayButtonClick}
-            className="p-button-success"
-            style={{
-              width: payOnDelivery ? "80%" : "",
-              marginRight: payOnDelivery ? "24vh" : "",
-              marginLeft: payOnDelivery ? "7vh" : "",
-            }}
-          />
-        </div>
-      </div>
-      <Dialog
-        header="Enter your shipping address"
-        visible={visible}
-        style={{ width: "50vw" }}
-        onHide={() => setVisible(false)}
-      >
-        <div className="p-fluid">
-          <form onSubmit={handleSubmit}>
-            <div className="p-field">
-              <label htmlFor="name">Name</label>
-              <InputText
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="p-field">
-              <label htmlFor="surname">Surname</label>
-              <InputText
-                id="surname"
-                name="surname"
-                value={formData.surname}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="p-field">
-              <label htmlFor="address">Address</label>
-              <InputText
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="p-field">
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <InputText
-                id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                required
-              />
-            </div>
+                    <label htmlFor="cardNumber">Card number</label>
+                    <InputText
+                      id="cardNumber"
+                      aria-describedby="cardNumber-help"
+                      value={cardData.number}
+                      onChange={(e) =>
+                        setCardData({ ...cardData, number: e.target.value })
+                      }
+                    />
 
-            <Button
-              type="submit"
-              label="Order"
-              style={{ marginTop: "1vh" }}
-              onClick={handleOrderClick}
-            />
-          </form>
-        </div>
-      </Dialog>
+                    <div className="flex align-items-center gap-2">
+                      <div className="flex flex-column">
+                        <label htmlFor="expiryDate">Expiry date</label>
+                        <InputText
+                          id="expiryDate"
+                          aria-describedby="expiryDate-help"
+                          value={cardData.expiry}
+                          onChange={(e) =>
+                            setCardData({ ...cardData, expiry: e.target.value })
+                          }
+                        />
+                      </div>
+                      <div className="flex flex-column">
+                        <label htmlFor="cvv">CVV</label>
+                        <InputText
+                          id="cvv"
+                          aria-describedby="cvv-help"
+                          value={cardData.cvv}
+                          onChange={(e) =>
+                            setCardData({ ...cardData, cvv: e.target.value })
+                          }
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
 
-      <Dialog
-        header="Enter your shipping address"
-        visible={visible2}
-        style={{ width: "50vw" }}
-        onHide={() => setVisible2(false)}
-      >
-        <div className="p-fluid">
-          <form onSubmit={handleSubmit}>
-            <div className="p-field">
-              <label htmlFor="name">Name</label>
-              <InputText
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
+                <Button
+                  label={payOnDelivery ? "Order and pay on delivery" : "Pay"}
+                  icon="pi pi-check"
+                  onClick={handlePayButtonClick}
+                  className="p-button-success"
+                  style={{
+                    width: payOnDelivery ? "80%" : "",
+                    marginRight: payOnDelivery ? "24vh" : "",
+                    marginLeft: payOnDelivery ? "7vh" : "",
+                  }}
+                />
+              </div>
             </div>
-            <div className="p-field">
-              <label htmlFor="surname">Surname</label>
-              <InputText
-                id="surname"
-                name="surname"
-                value={formData.surname}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="p-field">
-              <label htmlFor="address">Address</label>
-              <InputText
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="p-field">
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <InputText
-                id="phoneNumber"
-                name="phoneNumber"
-                value={formData.phoneNumber}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <Dialog
+              header="Enter your shipping address"
+              visible={visible}
+              style={{ width: "50vw" }}
+              onHide={() => setVisible(false)}
+            >
+              <div className="p-fluid">
+                <form onSubmit={handleSubmit}>
+                  <div className="p-field">
+                    <label htmlFor="name">Name</label>
+                    <InputText
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="surname">Surname</label>
+                    <InputText
+                      id="surname"
+                      name="surname"
+                      value={formData.surname}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="address">Address</label>
+                    <InputText
+                      id="address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <InputText
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-            <Button
-              type="submit"
-              label="Order"
-              style={{ marginTop: "1vh" }}
-              onClick={handleOrder2Click}
-            />
-          </form>
-        </div>
-      </Dialog>
+                  <Button
+                    type="submit"
+                    label="Order"
+                    style={{ marginTop: "1vh" }}
+                    onClick={handleOrderClick}
+                  />
+                </form>
+              </div>
+            </Dialog>
 
-      <Dialog
-        header=""
-        visible={spinner}
-        style={{}}
-        onHide={() => setSpinner(false)}
-      >
-        <div className="">
-          <h1>Payment in process</h1>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {!paymentSuccess ? (
-              <ProgressSpinner
-                style={{ width: "50px", height: "50px" }}
-                strokeWidth="10"
-                fill="var(--surface-ground)"
-                animationDuration="1s"
-              />
-            ) : (
-              <></>
-            )}
+            <Dialog
+              header="Enter your shipping address"
+              visible={visible2}
+              style={{ width: "50vw" }}
+              onHide={() => setVisible2(false)}
+            >
+              <div className="p-fluid">
+                <form onSubmit={handleSubmit}>
+                  <div className="p-field">
+                    <label htmlFor="name">Name</label>
+                    <InputText
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="surname">Surname</label>
+                    <InputText
+                      id="surname"
+                      name="surname"
+                      value={formData.surname}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="address">Address</label>
+                    <InputText
+                      id="address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <InputText
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    label="Order"
+                    style={{ marginTop: "1vh" }}
+                    onClick={handleOrder2Click}
+                  />
+                </form>
+              </div>
+            </Dialog>
+
+            <Dialog
+              header=""
+              visible={spinner}
+              style={{}}
+              onHide={() => setSpinner(false)}
+            >
+              <div className="">
+                <h1>Payment in process</h1>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {!paymentSuccess ? (
+                    <ProgressSpinner
+                      style={{ width: "50px", height: "50px" }}
+                      strokeWidth="10"
+                      fill="var(--surface-ground)"
+                      animationDuration="1s"
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+            </Dialog>
+            <Dialog
+              header=""
+              visible={paymentSuccess}
+              onHide={handleNavigateToCart}
+            >
+              <div className="">
+                <h1>Successfully paid!</h1>
+                <p>Order is visible under your profile!</p>
+              </div>
+            </Dialog>
+
+            <Dialog
+              header=""
+              visible={spinner2}
+              style={{}}
+              onHide={() => setSpinner2(false)}
+            >
+              <div className="">
+                <h1>Ordering in process</h1>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {!orderSuccess ? (
+                    <ProgressSpinner
+                      style={{ width: "50px", height: "50px" }}
+                      strokeWidth="10"
+                      fill="var(--surface-ground)"
+                      animationDuration="1s"
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+            </Dialog>
+            <Dialog
+              header=""
+              visible={orderSuccess}
+              onHide={handleNavigateToCart}
+            >
+              <div className="">
+                <h1>Successfully ordered!</h1>
+                <p>Order is visible under your profile!</p>
+              </div>
+            </Dialog>
+            <Dialog
+              header="Your order"
+              visible={visibleCart}
+              style={{ width: "50vw" }}
+              onHide={() => setVisibleCart(false)}
+            >
+              <DataTable value={products} tableStyle={{ minWidth: "50rem" }}>
+                <Column field="product.id" header="Code"></Column>
+
+                <Column field="product.name" header="Name"></Column>
+                <Column
+                  field="product.category.name"
+                  header="Category"
+                ></Column>
+                <Column field="product.price" header="Price"></Column>
+                <Column
+                  header="Total"
+                  body={(rowData) => totals[rowData.product.id] || 0}
+                ></Column>
+                <Column
+                  field="quantity"
+                  header="Quantity"
+                  body={quantities[products.id]}
+                ></Column>
+              </DataTable>
+              <p>
+                <b>Total price: </b>
+                {totalPrice}€
+              </p>
+              <p>
+                Any further product changes are not available here. If you wish
+                to change your order, please visit your cart.
+              </p>
+            </Dialog>
           </div>
         </div>
-      </Dialog>
-      <Dialog header="" visible={paymentSuccess} onHide={handleNavigateToCart}>
-        <div className="">
-          <h1>Successfully paid!</h1>
-          <p>Order is visible under your profile!</p>
-        </div>
-      </Dialog>
-
-      <Dialog
-        header=""
-        visible={spinner2}
-        style={{}}
-        onHide={() => setSpinner2(false)}
-      >
-        <div className="">
-          <h1>Ordering in process</h1>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {!orderSuccess ? (
-              <ProgressSpinner
-                style={{ width: "50px", height: "50px" }}
-                strokeWidth="10"
-                fill="var(--surface-ground)"
-                animationDuration="1s"
-              />
-            ) : (
-              <></>
-            )}
-          </div>
-        </div>
-      </Dialog>
-      <Dialog header="" visible={orderSuccess} onHide={handleNavigateToCart}>
-        <div className="">
-          <h1>Successfully ordered!</h1>
-          <p>Order is visible under your profile!</p>
-        </div>
-      </Dialog>
+      )}
     </div>
   );
 }
