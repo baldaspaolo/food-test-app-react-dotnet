@@ -16,9 +16,9 @@ namespace app_api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Receipt>> CreateReceipt(int userId, decimal total)
+        public async Task<ActionResult<Receipt>> CreateReceipt(Receipt receipt)
         {
-            var result = await _receiptservice.CreateReceipt(userId, total);
+            var result = await _receiptservice.CreateReceipt(receipt);
 
             if (result == null)
                 return NotFound();

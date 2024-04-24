@@ -31,6 +31,7 @@ function App() {
         phone: null,
         region: null,
         surname: null,
+        email: null,
       }
     );
   });
@@ -45,7 +46,8 @@ function App() {
     newCountry,
     newPhone,
     newRegion,
-    newSurname
+    newSurname,
+    newEmail
   ) => {
     setUser({
       id: newId,
@@ -58,6 +60,7 @@ function App() {
       phone: newPhone,
       region: newRegion,
       surname: newSurname,
+      email: newEmail,
     });
   };
 

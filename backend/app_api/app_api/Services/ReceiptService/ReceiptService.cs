@@ -13,13 +13,8 @@ namespace app_api.Services.ReceiptService
             _dbContext = dbContext;
         }
 
-        public async Task<Receipt> CreateReceipt(int userId, decimal total)
+        public async Task<Receipt> CreateReceipt(Receipt receipt)
         {
-            Receipt receipt = new Receipt
-            {
-                Total = total,
-                userId = userId
-            };
             _dbContext.Receipts.Add(receipt);
            await _dbContext.SaveChangesAsync();
             return receipt;

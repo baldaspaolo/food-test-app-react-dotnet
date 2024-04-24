@@ -268,7 +268,13 @@ function Navbar() {
       <div className="card flex flex-column align-items-center gap-3">
         <Toast ref={toast} />
 
-        <OverlayPanel ref={op} showCloseIcon closeOnEscape dismissable={false}>
+        <OverlayPanel
+          ref={op}
+          showCloseIcon
+          closeOnEscape
+          dismissable={false}
+          style={{ marginTop: "2vh" }}
+        >
           <h2>Shopping cart</h2>
           <i
             style={{ cursor: "pointer", marginBottom: "2vh" }}

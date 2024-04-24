@@ -5,12 +5,18 @@ import { UserContext } from "../context/UserContext";
 import { InputText } from "primereact/inputtext";
 import { InputSwitch } from "primereact/inputswitch";
 import { Button } from "primereact/button";
-import { Divider } from "primereact/divider";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Dialog } from "primereact/dialog";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { InputNumber } from "primereact/inputnumber";
+import { Divider } from "primereact/divider";
+
+import { FaCcVisa } from "react-icons/fa";
+import { FaCcApplePay } from "react-icons/fa";
+import { FaGooglePay } from "react-icons/fa";
+import { FaCcPaypal } from "react-icons/fa6";
+import { FaAmazonPay } from "react-icons/fa6";
+import { FaCcMastercard } from "react-icons/fa";
 
 function Paying() {
   const [visible, setVisible] = useState(false);
@@ -24,6 +30,8 @@ function Paying() {
 
   const [payOnDelivery, setPayOnDelivery] = useState(false);
   const [useSavedAddress, setUseSavedAddress] = useState(false);
+  const [useMyWallet, setUseMyWallet] = useState(false);
+  const [payOrderType, setPayOrderType] = useState("");
 
   const { user } = useContext(UserContext);
 
@@ -43,6 +51,7 @@ function Paying() {
   const userCountry = user.country;
   const userRegion = user.region;
   const userCity = user.city;
+  const userEmail = user.email;
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -59,12 +68,26 @@ function Paying() {
     cvv: "",
   });
 
+  const [userOrder, setUserOrder] = useState({
+    id: userId,
+    name: null,
+    surname: null,
+    email: null,
+    address: null,
+    city: null,
+    region: null,
+    postalCode: null,
+    country: null,
+    phone: null,
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setUserOrder((prevData) => ({
       ...prevData,
       [name]: value,
     }));
+    console.log(userOrder);
   };
 
   const handleSubmit = (e) => {
@@ -73,26 +96,60 @@ function Paying() {
     console.log(cardData);
   };
 
+  useEffect(() => {
+    // Set initial values for userOrder when component mounts
+    setUserOrder({
+      id: userId,
+      name: userName,
+      surname: userSurname,
+      email: userEmail,
+      address: userAddress,
+      city: userCity,
+      region: userRegion,
+      postalCode: "52447",
+      country: userCountry,
+      phone: userPhone,
+    });
+  }, [
+    userId,
+    userName,
+    userSurname,
+    userEmail,
+    userAddress,
+    userCity,
+    userRegion,
+    userCountry,
+    userPhone,
+  ]);
+
   const handlePayButtonClick = () => {
     if (payOnDelivery && !useSavedAddress) {
       //paying on delivery with custom address ||| works
+      setUserOrder({});
+
       setVisible2(true);
       setCardData({});
+      setPayOrderType("Pay on Delivery");
     }
 
     if (!payOnDelivery && !useSavedAddress) {
       //paying with card with custom user address ||| works
       setFormData({});
+      setUserOrder({});
+
       handlePayCardCustomAddress();
       console.log(cardData);
+      setPayOrderType("Pay with Card");
     }
 
     if (!payOnDelivery && useSavedAddress) {
       handlePayCardSavedAddress();
+      setPayOrderType("Pay with Card");
     }
 
     if (payOnDelivery && useSavedAddress) {
       handlePayCardSavedAddress2();
+      setPayOrderType("Pay on Delivery");
     }
   };
 
@@ -247,15 +304,26 @@ function Paying() {
 
   const handlePay = async () => {
     try {
-      const response = await fetch(
-        `https://localhost:7080/api/Receipt?userId=${userId}&total=${totalPrice}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`https://localhost:7080/api/Receipt`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          total: totalPrice,
+          name: userOrder.name,
+          surname: userOrder.surname,
+          email: userOrder.email,
+          address: userOrder.address,
+          city: userOrder.city,
+          region: userOrder.region,
+          postalCode: userOrder.postalCode,
+          country: userOrder.country,
+          phone: userOrder.phone,
+          orderType: payOrderType,
+          userId: userId,
+        }),
+      });
 
       const data = await response.json();
       console.log(data);
@@ -310,7 +378,7 @@ function Paying() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: "5vh",
+                marginTop: "3vh",
                 marginRight: "10vh",
               }}
             >
@@ -321,17 +389,48 @@ function Paying() {
                     <b>Payment amount</b>
                   </p>
                   <p>{totalPrice}€</p>
-                  <p onClick={openReceipt} style={{}}>
+                  <p onClick={openReceipt} style={{ cursor: "pointer" }}>
                     <u>See order</u>
                   </p>
                 </div>
               </div>
             </div>
+            <div
+              style={{
+                width: "23%",
+                margin: "0 auto",
+              }}
+            >
+              <Divider />
+            </div>
+            <div
+              style={{
+                width: "23%",
+                margin: "0 auto",
+                display: "flex",
+                justifyContent: "space-around",
+              }}
+            >
+              <FaCcVisa style={{ width: "10%", height: "10%" }} />
+              <FaCcMastercard style={{ width: "10%", height: "10%" }} />
+              <FaAmazonPay style={{ width: "10%", height: "10%" }} />
+              <FaCcPaypal style={{ width: "10%", height: "10%" }} />
+              <FaCcApplePay style={{ width: "10%", height: "10%" }} />
+              <FaGooglePay style={{ width: "10%", height: "10%" }} />
+            </div>
+            <div
+              style={{
+                width: "23%",
+                margin: "0 auto",
+              }}
+            >
+              <Divider />
+            </div>
             <div className="flex justify-content-center">
               <div
                 style={{
                   display: "flex",
-                  marginTop: "1vh",
+                  marginTop: "3vh",
                   marginBottom: "3vh",
                 }}
               >
@@ -342,6 +441,7 @@ function Paying() {
                     checked={payOnDelivery}
                     onChange={(e) => setPayOnDelivery(e.value)}
                     style={{ marginRight: "5vh" }}
+                    disabled={useMyWallet}
                   />
                 </div>
                 <div className="flex align-items-center gap-2">
@@ -353,6 +453,36 @@ function Paying() {
                   />
                 </div>
               </div>
+            </div>
+            <div className="flex justify-content-left">
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "3vh",
+                  marginBottom: "3vh",
+                  marginLeft: "39%",
+                }}
+              >
+                <div className="flex align-items-center gap-2">
+                  <label htmlFor="useMyWallet">Use my Wallet</label>
+                  <InputSwitch
+                    id="useMyWallet"
+                    checked={useMyWallet}
+                    onChange={(e) => setUseMyWallet(e.value)}
+                    style={{ marginLeft: "1vh" }}
+                    disabled={payOnDelivery}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              style={{
+                width: "23%",
+                margin: "0 auto",
+              }}
+            >
+              <Divider />
             </div>
             <div className="card flex justify-content-center">
               <div className="flex flex-column gap-2">
@@ -431,7 +561,7 @@ function Paying() {
                     <InputText
                       id="name"
                       name="name"
-                      value={formData.name}
+                      value={userOrder.name}
                       onChange={handleChange}
                       required
                     />
@@ -441,7 +571,17 @@ function Paying() {
                     <InputText
                       id="surname"
                       name="surname"
-                      value={formData.surname}
+                      value={userOrder.surname}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="email">Email address</label>
+                    <InputText
+                      id="email"
+                      name="email"
+                      value={userOrder.email}
                       onChange={handleChange}
                       required
                     />
@@ -451,17 +591,57 @@ function Paying() {
                     <InputText
                       id="address"
                       name="address"
-                      value={formData.address}
+                      value={userOrder.address}
                       onChange={handleChange}
                       required
                     />
                   </div>
                   <div className="p-field">
-                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <label htmlFor="city">City</label>
                     <InputText
-                      id="phoneNumber"
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
+                      id="city"
+                      name="city"
+                      value={userOrder.city}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="region">Region</label>
+                    <InputText
+                      id="region"
+                      name="region"
+                      value={userOrder.region}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="postalCode">Postal code</label>
+                    <InputText
+                      id="postalCode"
+                      name="postalCode"
+                      value={userOrder.postalCode}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="country">Country</label>
+                    <InputText
+                      id="country"
+                      name="country"
+                      value={userOrder.country}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="phone">Phone Number</label>
+                    <InputText
+                      id="phone"
+                      name="phone"
+                      value={userOrder.phone}
                       onChange={handleChange}
                       required
                     />
@@ -490,7 +670,7 @@ function Paying() {
                     <InputText
                       id="name"
                       name="name"
-                      value={formData.name}
+                      value={userOrder.name}
                       onChange={handleChange}
                       required
                     />
@@ -500,7 +680,17 @@ function Paying() {
                     <InputText
                       id="surname"
                       name="surname"
-                      value={formData.surname}
+                      value={userOrder.surname}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="email">Email address</label>
+                    <InputText
+                      id="email"
+                      name="email"
+                      value={userOrder.surname}
                       onChange={handleChange}
                       required
                     />
@@ -510,17 +700,57 @@ function Paying() {
                     <InputText
                       id="address"
                       name="address"
-                      value={formData.address}
+                      value={userOrder.address}
                       onChange={handleChange}
                       required
                     />
                   </div>
                   <div className="p-field">
-                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <label htmlFor="city">City</label>
                     <InputText
-                      id="phoneNumber"
-                      name="phoneNumber"
-                      value={formData.phoneNumber}
+                      id="city"
+                      name="city"
+                      value={userOrder.city}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="region">Region</label>
+                    <InputText
+                      id="region"
+                      name="region"
+                      value={userOrder.region}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="postalCode">Postal code</label>
+                    <InputText
+                      id="postalCode"
+                      name="postalCode"
+                      value={userOrder.postalCode}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="country">Country</label>
+                    <InputText
+                      id="country"
+                      name="country"
+                      value={userOrder.country}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
+                  <div className="p-field">
+                    <label htmlFor="phone">Phone Number</label>
+                    <InputText
+                      id="phone"
+                      name="phone"
+                      value={userOrder.phone}
                       onChange={handleChange}
                       required
                     />
@@ -530,7 +760,7 @@ function Paying() {
                     type="submit"
                     label="Order"
                     style={{ marginTop: "1vh" }}
-                    onClick={handleOrder2Click}
+                    onClick={handleOrderClick}
                   />
                 </form>
               </div>
