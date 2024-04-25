@@ -6,14 +6,11 @@ import { Button } from "primereact/button";
 
 function MyOrders() {
   const { user } = useContext(UserContext);
-  const [products, setProducts] = useState([]);
 
   const userId = user.id;
 
   const [orders, setOrders] = useState([]);
   const [expandedRows, setExpandedRows] = useState(null);
-
-  // eslint-disable-line react-hooks/exhaustive-deps
 
   const expandAll = () => {
     let _expandedRows = {};

@@ -42,6 +42,7 @@ function MyProfile() {
 
   const isLogged = user.isLogged;
   const userId = user.id;
+  console.log(user);
 
   const handelPasswordChange = (e) => {
     setPw(e.target.value);

@@ -2,7 +2,7 @@
 {
     public interface IReceiptService
     {
-        Task<Receipt> CreateReceipt(int userId, decimal total);
+        Task<Receipt> CreateReceipt(Receipt receipt);
 
         Task<Receipt> UpdateReceipt(int receiptId);
 

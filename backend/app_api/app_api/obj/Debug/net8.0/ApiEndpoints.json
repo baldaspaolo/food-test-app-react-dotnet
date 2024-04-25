@@ -400,14 +400,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "total",
-        "Type": "System.Decimal",
-        "IsRequired": false
+        "Name": "receipt",
+        "Type": "app_api.Models.Receipt",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

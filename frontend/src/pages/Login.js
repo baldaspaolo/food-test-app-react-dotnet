@@ -66,7 +66,8 @@ function Login() {
           data.country,
           data.phone,
           data.region,
-          data.surname
+          data.surname,
+          data.email
         );
         navigate("/");
 
