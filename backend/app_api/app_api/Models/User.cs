@@ -33,6 +33,8 @@ namespace app_api.Models
 
         public Cart? Cart { get; set; }
 
+        public Wallet Wallet { get; set; }
+
 
 
     }

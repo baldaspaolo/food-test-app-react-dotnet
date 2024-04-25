@@ -125,31 +125,33 @@ function Paying() {
   const handlePayButtonClick = () => {
     if (payOnDelivery && !useSavedAddress) {
       //paying on delivery with custom address ||| works
+      setPayOrderType("Pay on Delivery");
       setUserOrder({});
 
       setVisible2(true);
       setCardData({});
-      setPayOrderType("Pay on Delivery");
     }
 
     if (!payOnDelivery && !useSavedAddress) {
       //paying with card with custom user address ||| works
+      setPayOrderType("Pay with Card");
       setFormData({});
       setUserOrder({});
 
       handlePayCardCustomAddress();
       console.log(cardData);
-      setPayOrderType("Pay with Card");
     }
 
     if (!payOnDelivery && useSavedAddress) {
-      handlePayCardSavedAddress();
       setPayOrderType("Pay with Card");
+
+      handlePayCardSavedAddress();
     }
 
     if (payOnDelivery && useSavedAddress) {
-      handlePayCardSavedAddress2();
       setPayOrderType("Pay on Delivery");
+
+      handlePayCardSavedAddress2();
     }
   };
 

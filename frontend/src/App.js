@@ -16,6 +16,7 @@ import Shop from "./pages/Shop.js";
 import Product from "./pages/Product.js";
 import MyOrders from "./pages/MyOrders.js";
 import Paying from "./pages/Paying.js";
+import MyProfileNew from "./pages/MyProfileNew.js";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -88,6 +89,7 @@ function App() {
             <Route path="/product/:id" element={<Product />} />
             <Route path="/pay" element={<Paying />} />
             <Route path="/myOrders" element={<MyOrders />} />
+            <Route path="/myprofileNew" element={<MyProfileNew />} />
           </Routes>
         </UserContext.Provider>
       </Router>

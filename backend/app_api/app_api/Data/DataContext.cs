@@ -43,6 +43,8 @@ namespace app_api.Data
 
         public DbSet<ReceiptProduct> ReceiptProducts { get; set; }
 
+        public DbSet<Wallet> Wallets { get; set; }
+
 
 
 

@@ -217,38 +217,43 @@ function Navbar() {
       className="flex align-items-center gap-2"
       style={{ cursor: "pointer" }}
     >
-      <p onClick={handleAvatarClick}>
+      <p onClick={handleAvatarClick} style={{ margin: 0 }}>
         {username} {isLogged}
       </p>
       {pic ? (
-        <div>
-          {username === "" ? (
-            <div></div>
-          ) : (
-            <div>
-              <div
-                style={{
-                  display: "inline",
-                  marginRight: "2vh",
-                }}
-              >
-                <i
-                  className="pi pi-shopping-cart"
-                  style={{ fontSize: "1.7rem" }}
-                  onClick={(e) => op.current.toggle(e)}
-                ></i>
-              </div>
-              <Avatar onClick={handleAvatarClick} image={pic} shape="circle" />
-              <Button
-                label="Log out"
-                severity="danger"
-                text
-                onClick={handleLogoutClick}
-              >
-                <i className="pi pi-sign-out" style={{ marginLeft: "5px" }}></i>{" "}
-              </Button>
-            </div>
-          )}
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <div
+            style={{ display: "flex", marginRight: "1rem", marginTop: "10px" }}
+          >
+            <i
+              className="pi pi-wallet"
+              style={{ fontSize: "1.7rem", marginRight: "0.5rem" }}
+              onClick={(e) => op.current.toggle(e)}
+            ></i>
+            <p style={{ marginTop: "5px" }}>My wallet</p>
+          </div>
+          <i
+            className="pi pi-shopping-cart"
+            style={{ fontSize: "1.7rem", marginRight: "1rem" }}
+            onClick={(e) => op.current.toggle(e)}
+          ></i>
+          <p style={{ marginTop: "16px", marginRight: "15px" }}>My wallet</p>
+          <Avatar
+            onClick={handleAvatarClick}
+            image={pic}
+            shape="circle"
+            style={{ marginRight: "3px" }}
+          />
+          <p style={{ marginTop: "17px" }}>My profile</p>
+          <Button
+            label="Log out"
+            severity="danger"
+            text
+            onClick={handleLogoutClick}
+            style={{ marginLeft: "1rem" }}
+          >
+            <i className="pi pi-sign-out" style={{ marginLeft: "0.5rem" }}></i>
+          </Button>
         </div>
       ) : (
         <Button label="Login" text onClick={handleLoginClick} />
