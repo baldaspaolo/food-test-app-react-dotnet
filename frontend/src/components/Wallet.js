@@ -12,7 +12,6 @@ const MyWallet = () => {
   const [value, setValue] = useState(50);
 
   const navigate = useNavigate();
-  const { valueToAdd } = useParams();
 
   const products = [
     { code: "001", name: "Product A", category: "Category 1", quantity: 10 },
