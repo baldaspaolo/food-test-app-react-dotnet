@@ -10,6 +10,8 @@ import "./styles.css";
 
 function MyProfileNew() {
   const [pic, setPic] = useState(null);
+  const [activeButton, setActiveButton] = useState("myOrders");
+
   const { user } = useContext(UserContext);
 
   const userId = user.id;
@@ -19,19 +21,49 @@ function MyProfileNew() {
   const isLogged = user.isLogged;
 
   let items = [
-    { label: "My Wallet", icon: "pi pi-wallet" },
-    { label: "My Orders", icon: "pi pi-list" },
+    {
+      label: "My Orders",
+      icon: "pi pi-list",
+      command: () => handleMenuItemClick("myOrders"),
+    },
+    {
+      label: "My Wallet",
+      icon: "pi pi-wallet",
+      command: () => handleMenuItemClick("myWallet"),
+    },
   ];
 
   let items2 = [
-    { label: "Personal information", icon: "pi pi-id-card" },
-    { label: "Rewards", icon: "pi pi-list" },
-    { label: "Adresses", icon: "pi pi-address-book" },
-    { label: "Payment methods", icon: "pi pi-credit-card" },
-    { label: "Rewards", icon: "pi pi-star" },
+    {
+      label: "Personal information",
+      icon: "pi pi-id-card",
+      command: () => handleMenuItemClick("personalInformation"),
+    },
+
+    {
+      label: "Adresses",
+      icon: "pi pi-address-book",
+      command: () => handleMenuItemClick("addresses"),
+    },
+    {
+      label: "Payment methods",
+      icon: "pi pi-credit-card",
+      command: () => handleMenuItemClick("paymentMethods"),
+    },
+    {
+      label: "Rewards",
+      icon: "pi pi-star",
+      command: () => handleMenuItemClick("rewards"),
+    },
   ];
 
-  let settings = [{ label: "Settings", icon: "pi pi-cog" }];
+  let settings = [
+    {
+      label: "Settings",
+      icon: "pi pi-cog",
+      command: () => handleMenuItemClick("settings"),
+    },
+  ];
 
   const header = (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -62,12 +94,40 @@ function MyProfileNew() {
         <Button
           label="Go to my Data"
           severity="secondary"
-          style={{ fontSize: "0.8rem" }} // Adjust the font size as needed
+          style={{ fontSize: "0.8rem" }}
           outlined
         />
       </div>
     </div>
   );
+
+  const handleMenuItemClick = (event) => {
+    console.log(event);
+    if (event === "myWallet") {
+      setActiveButton("myWallet");
+    }
+    if (event === "myOrders") {
+      setActiveButton("myOrders");
+    }
+    if (event === "personalInformation") {
+      setActiveButton("personalInformation");
+    }
+    if (event === "addresses") {
+      setActiveButton("addresses");
+    }
+    if (event === "paymentMethods") {
+      setActiveButton("paymentMethods");
+    }
+    if (event === "addresses") {
+      setActiveButton("addresses");
+    }
+    if (event === "rewards") {
+      setActiveButton("rewards");
+    }
+    if (event === "settings") {
+      setActiveButton("settings");
+    }
+  };
 
   useEffect(() => {
     const fetchAvatar = async (userId) => {
@@ -110,7 +170,11 @@ function MyProfileNew() {
           ></Card>
         </div>
         <div class="div22" style={{ marginTop: "1vh", marginRight: "" }}>
-          <Menu model={items} style={{ width: "20rem " }} />
+          <Menu
+            model={items}
+            style={{ width: "20rem " }}
+            onClick={handleMenuItemClick}
+          />
           <Menu model={items2} style={{ width: "20rem", marginTop: "1vh" }} />
           <Menu model={settings} style={{ width: "20rem", marginTop: "1vh" }} />
         </div>

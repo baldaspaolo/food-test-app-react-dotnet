@@ -17,6 +17,7 @@ import Product from "./pages/Product.js";
 import MyOrders from "./pages/MyOrders.js";
 import Paying from "./pages/Paying.js";
 import MyProfileNew from "./pages/MyProfileNew.js";
+import Payment from "./components/Payment.js";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -90,6 +91,7 @@ function App() {
             <Route path="/pay" element={<Paying />} />
             <Route path="/myOrders" element={<MyOrders />} />
             <Route path="/myprofileNew" element={<MyProfileNew />} />
+            <Route path="/addFounds/:valueToAdd" element={<Payment />} />
           </Routes>
         </UserContext.Provider>
       </Router>
